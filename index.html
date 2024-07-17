@@ -29,16 +29,16 @@
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
             color: white;
             text-align: center;
-        }
-        header {
             position: fixed;
             width: 100%;
-            top: 0;
             z-index: 1000;
+        }
+        header {
+            top: 0;
             padding: 0.5rem 0;
         }
         footer {
-            margin-top: auto;
+            bottom: 0;
             padding: 0.7rem 0;
         }
         nav ul {
@@ -67,8 +67,8 @@
             display: flex;
             flex-wrap: wrap;
             max-width: 1600px;
-            margin: 60px auto 20px;
-            padding: 0 20px;
+            margin: 60px auto;
+            padding: 0 20px 60px;  /* Added bottom padding for footer */
             box-sizing: border-box;
         }
         .banner-container {
@@ -138,10 +138,15 @@
         .baemin-button {
             background-color: var(--baemin-color);
         }
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
         @media (max-width: 768px) {
             .main-container {
                 flex-direction: column;
                 margin-top: 40px;
+                margin-bottom: 60px;  /* Added margin for footer */
             }
             .banner-container {
                 width: 100%;
@@ -177,7 +182,7 @@
             .banner-container {
                 position: sticky;
                 top: 60px;
-                height: calc(100vh - 80px);
+                height: calc(100vh - 120px);  /* Adjusted for header and footer */
             }
             .banner-container iframe {
                 width: 200px;
