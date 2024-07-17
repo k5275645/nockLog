@@ -154,7 +154,7 @@
             background-color: var(--baemin-color);
         }
         .referral-id {
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: bold;
             margin-top: 15px;
             text-align: center;
@@ -165,7 +165,7 @@
             font-size: 0.9em;
             color: var(--accent-color);
         }
-        @media (max-width: 768px) {
+        @media (max-width: 768px) and (orientation: portrait) {
             .main-container {
                 flex-direction: column;
             }
@@ -176,14 +176,7 @@
             }
             .banner-container iframe {
                 width: 100%;
-                height: auto;
-            }
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            nav ul li {
-                margin: 5px 0;
+                height: 100px;
             }
             .content-container {
                 grid-template-columns: repeat(2, 1fr);
@@ -199,7 +192,33 @@
                 height: 54px;
             }
         }
+        @media (max-width: 768px) and (orientation: landscape) {
+            .main-container {
+                flex-direction: column;
+            }
+            .banner-container {
+                order: -1;
+                margin-right: 0;
+                width: 100%;
+            }
+            .banner-container iframe {
+                width: 100%;
+                height: 100px;
+            }
+        }
         @media (min-width: 769px) {
+            .main-container {
+                flex-direction: row;
+            }
+            .banner-container {
+                order: -1;
+                flex: 0 0 200px;
+                margin-right: 20px;
+            }
+            .banner-container iframe {
+                width: 200px;
+                height: 600px;
+            }
             main {
                 flex: 1;
                 min-width: 600px;
@@ -224,7 +243,7 @@
 
     <div class="main-container">
         <div class="banner-container">
-            <iframe src="https://ads-partners.coupang.com/widgets.html?id=791674&template=carousel&trackingCode=AF0820677&subId=&width=100&height=600&tsource=" width="100" height="600" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+            <iframe src="https://ads-partners.coupang.com/widgets.html?id=791674&template=carousel&trackingCode=AF0820677&subId=&width=100&height=600&tsource=" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
         </div>
 
         <main role="main">
@@ -263,12 +282,12 @@
                 <p class="disclaimer">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
 
                 <div class="referral-id">
-                    <p>쿠팡이츠배달파트너 추천인ID : 05PUTQ06</p>
-                    <p>사용 시 신규 가입자와 추천인 모두에게 1만원 지급</p>
+                    <p>쿠팡이츠 배달파트너 추천인ID사용시 신규 가입자와 추천인 모두에게 1만원 지급</p>
+                    <p>쿠팡이츠 추천인ID : 05PUTQ06</p>
                 </div>
 
                 <div class="referral-id">
-                    <p>입력 및 미션 달성 시 최대 20만원 보너스</p>
+                    <p>배민커넥트 추천인ID 입력 및 미션 달성 시 최대 20만원 보너스</p>
                     <p>배민커넥트 추천인ID : BC564522</p>
                 </div>
 
