@@ -113,14 +113,17 @@
                 margin: 5px 0;
             }
             .content-container {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .iframe-item, .link-item {
+                max-width: 100%;
             }
         }
         body {
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             min-height: 100vh;
         }
         header, footer {
@@ -217,6 +220,9 @@
                 <div class="iframe-item">
                     <iframe src="https://coupa.ng/cfO0wn" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
                 </div>
+                <div class="iframe-item">
+                    <iframe src="https://coupa.ng/cfO0TS" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                </div>
             </div>
 
             <p class="disclaimer">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
@@ -224,7 +230,7 @@
     </main>
 
     <footer>
-        <a href="https://blog.naver.com/nocklog" target="_blank" rel="noopener noreferrer">낙로그 가기</a>
+        <a href="https://blog.naver.com/nocklog" target="_blank" rel="noopener noreferrer">낙지 네이버 블로그 가기</a>
     </footer>
 
     <script>
@@ -253,17 +259,19 @@
         
             // 타이핑 효과
             const tagline = document.querySelector('.tagline');
-            const text = tagline.textContent;
-            tagline.textContent = '';
-            let i = 0;
-            const typeWriter = () => {
-                if (i < text.length) {
-                    tagline.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 50);
-                }
-            };
-            typeWriter();
+            if (tagline) {
+                const text = tagline.textContent;
+                tagline.textContent = '';
+                let i = 0;
+                const typeWriter = () => {
+                    if (i < text.length) {
+                        tagline.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 50);
+                    }
+                };
+                typeWriter();
+            }
         });
         
     </script>
