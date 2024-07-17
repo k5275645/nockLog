@@ -28,7 +28,6 @@
         header, footer {
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 0.5rem 0;
             text-align: center;
         }
         header {
@@ -36,6 +35,11 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            padding: 0.5rem 0;
+        }
+        footer {
+            margin-top: auto;
+            padding: 0.7rem 0;  /* Increased padding for footer */
         }
         nav ul {
             display: flex;
@@ -106,37 +110,30 @@
             margin-top: 15px;
             text-align: center;
         }
-        footer {
-            margin-top: auto;
-        }
         footer a {
             color: white;
             text-decoration: none;
         }
-        .delivery-links {
+        .delivery-info {
             display: flex;
             justify-content: space-around;
             margin-top: 20px;
             flex-wrap: wrap;
         }
-        .delivery-link {
+        .delivery-item {
             text-align: center;
             margin: 10px;
             width: 45%;
         }
-        .delivery-link a {
+        .delivery-item a {
             display: inline-block;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
             transition: opacity 0.3s ease;
         }
-        .delivery-link a:hover {
+        .delivery-item a:hover {
             opacity: 0.8;
-        }
-        .delivery-link p {
-            margin-top: 10px;
-            font-size: 0.9em;
         }
         .coupang-button, .baemin-button {
             width: 200px;
@@ -146,6 +143,7 @@
             cursor: pointer;
             font-size: 1em;
             border-radius: 5px;
+            margin-top: 10px;
         }
         .coupang-button {
             background-color: var(--coupang-color);
@@ -154,9 +152,9 @@
             background-color: var(--baemin-color);
         }
         .referral-id {
-            font-size: 1em;
+            font-size: 0.9em;
             font-weight: bold;
-            margin-top: 15px;
+            margin-top: 10px;
             text-align: center;
         }
         .hashtags {
@@ -165,7 +163,7 @@
             font-size: 0.9em;
             color: var(--accent-color);
         }
-        @media (max-width: 768px) and (orientation: portrait) {
+        @media (max-width: 768px) {
             .main-container {
                 flex-direction: column;
             }
@@ -184,26 +182,15 @@
             .iframe-item {
                 max-width: 100%;
             }
-            .delivery-link {
+            .delivery-item {
                 width: 100%;
             }
             .coupang-button, .baemin-button {
                 width: 180px;
                 height: 54px;
             }
-        }
-        @media (max-width: 768px) and (orientation: landscape) {
-            .main-container {
-                flex-direction: column;
-            }
-            .banner-container {
-                order: -1;
-                margin-right: 0;
-                width: 100%;
-            }
-            .banner-container iframe {
-                width: 100%;
-                height: 100px;
+            main {
+                margin-top: 10px;  /* Added margin to reduce gap with banner */
             }
         }
         @media (min-width: 769px) {
@@ -281,23 +268,21 @@
 
                 <p class="disclaimer">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
 
-                <div class="referral-id">
-                    <p>쿠팡이츠 배달파트너 추천인ID사용시 신규 가입자와 추천인 모두에게 1만원 지급</p>
-                    <p>쿠팡이츠 추천인ID : 05PUTQ06</p>
-                </div>
-
-                <div class="referral-id">
-                    <p>배민커넥트 추천인ID 입력 및 미션 달성 시 최대 20만원 보너스</p>
-                    <p>배민커넥트 추천인ID : BC564522</p>
-                </div>
-
-                <div class="delivery-links">
-                    <div class="delivery-link">
+                <div class="delivery-info">
+                    <div class="delivery-item">
+                        <div class="referral-id">
+                            <p>쿠팡이츠 배달파트너 추천인ID사용시 신규 가입자와 추천인 모두에게 1만원 지급</p>
+                            <p>쿠팡이츠 추천인ID : 05PUTQ06</p>
+                        </div>
                         <a href="https://eatscourier.app.link/hp7FxmyKaLb" target="_blank">
                             <button class="coupang-button">쿠팡이츠 배달하러가기</button>
                         </a>
                     </div>
-                    <div class="delivery-link">
+                    <div class="delivery-item">
+                        <div class="referral-id">
+                            <p>배민커넥트 추천인ID 입력 및 미션 달성 시 최대 20만원 보너스</p>
+                            <p>배민커넥트 추천인ID : BC564522</p>
+                        </div>
                         <a href="https://baeminconnect.onelink.me/k618/3ccpicgp" target="_blank">
                             <button class="baemin-button">배민커넥트 배달하러가기</button>
                         </a>
