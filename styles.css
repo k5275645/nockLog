@@ -4,7 +4,6 @@
     --background-color: #f4f4f4;
     --text-color: #333;
 }
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
@@ -13,7 +12,6 @@ body {
     margin: 0;
     padding: 0;
 }
-
 header {
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     color: white;
@@ -23,85 +21,67 @@ header {
     top: 0;
     z-index: 1000;
 }
-
 nav ul {
     display: flex;
     justify-content: center;
     list-style-type: none;
     padding: 0;
 }
-
 nav ul li {
     margin: 0 15px;
 }
-
 nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
     transition: all 0.3s ease;
 }
-
 nav ul li a:hover {
     color: var(--secondary-color);
     text-shadow: 0 0 5px rgba(255,255,255,0.7);
 }
-
 main {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 80px auto 20px;
     padding: 0 20px;
 }
-
 section {
     background-color: white;
     margin-bottom: 30px;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
 }
-
-section:hover {
-    transform: translateY(-5px);
-}
-
 h1, h2 {
     color: var(--primary-color);
 }
-
-.highlight {
-    color: var(--secondary-color);
-}
-
-.tagline {
-    font-style: italic;
-    color: #777;
-}
-
-.skills-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
+    justify-items: center;
 }
-
-.skill-item {
+.product-item {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+.product-item a {
+    display: block;
+    padding: 10px;
     background-color: var(--primary-color);
     color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
-
-.skill-item:hover {
+.product-item a:hover {
     background-color: var(--secondary-color);
-    transform: scale(1.05);
 }
-
+.small-font {
+    font-size: 0.8em;
+    color: #777;
+}
 footer {
     background-color: var(--primary-color);
     color: white;
@@ -111,18 +91,15 @@ footer {
     bottom: 0;
     width: 100%;
 }
-
 @media (max-width: 600px) {
     nav ul {
         flex-direction: column;
         align-items: center;
     }
-
     nav ul li {
         margin: 5px 0;
     }
-
-    .skills-container {
-        flex-direction: column;
+    .product-grid {
+        grid-template-columns: 1fr;
     }
 }
