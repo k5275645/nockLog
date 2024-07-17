@@ -219,7 +219,7 @@
     <header id="header">
         <nav>
             <ul>
-                <li><a href="https://www.naver.com" target="_blank" class="naver-link">네이버</a></li>
+                <li><a href="https://www.naver.com" target="_blank" class="naver-link" id="naverLink">네이버</a></li>
                 <li><a href="#home" id="home-button">홈</a></li>
                 <li><a href="https://www.google.com" target="_blank" class="google-link">구글</a></li>
             </ul>
@@ -310,7 +310,7 @@
 
     <footer id="footer">
         <div class="footer-content">
-            <a href="https://www.naver.com" target="_blank" class="naver-link">네이버</a>
+            <a href="https://www.naver.com" target="_blank" class="naver-link" id="naverLinkFooter">네이버</a>
             <a href="https://blog.naver.com/nocklog" target="_blank" rel="noopener noreferrer">낙지 블로그</a>
             <a href="https://www.google.com" target="_blank" class="google-link">구글</a>
         </div>
@@ -320,6 +320,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             var homeButton = document.getElementById('home-button');
             var homeSection = document.getElementById('home');
+            var naverLink = document.getElementById('naverLink');
+            var naverLinkFooter = document.getElementById('naverLinkFooter');
             
             function scrollToHome(e) {
                 e.preventDefault();
@@ -327,6 +329,24 @@
             }
             
             homeButton.addEventListener('click', scrollToHome);
+
+            // 모바일 기기 감지 함수
+            function isMobile() {
+                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            }
+
+            // 네이버 링크 업데이트 함수
+            function updateNaverLinks() {
+                var naverUrl = isMobile() ? "https://m.naver.com" : "https://www.naver.com";
+                naverLink.href = naverUrl;
+                naverLinkFooter.href = naverUrl;
+            }
+
+            // 페이지 로드 시 네이버 링크 업데이트
+            updateNaverLinks();
+
+            // 화면 크기 변경 시 네이버 링크 업데이트 (옵션)
+            window.addEventListener('resize', updateNaverLinks);
         });
     </script>
 </body>
