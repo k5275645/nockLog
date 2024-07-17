@@ -43,7 +43,7 @@
             margin: 0;
         }
         nav ul li {
-            margin: 0 8px;
+            margin: 0 15px;
         }
         nav ul li a {
             color: white;
@@ -60,18 +60,27 @@
         nav ul li a:active {
             background-color: rgba(255, 255, 255, 0.2);
         }
-        main {
-            flex-grow: 1;
+        .main-container {
+            display: flex;
+            flex-wrap: wrap;
             max-width: 1200px;
-            margin: 80px auto 20px;
+            margin: 70px auto 20px;
             padding: 0 20px;
-            width: 100%;
             box-sizing: border-box;
+        }
+        .banner-container {
+            flex: 0 0 200px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+        main {
+            flex: 1;
+            min-width: 300px;
         }
         section {
             background-color: white;
             margin-bottom: 30px;
-            padding: 30px;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
@@ -80,19 +89,19 @@
         }
         .content-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             justify-items: center;
         }
         .iframe-item {
             width: 100%;
-            max-width: 300px;
+            max-width: 200px;
             text-align: center;
         }
         .disclaimer {
             font-size: 0.8em;
             color: #777;
-            margin-top: 10px;
+            margin-top: 20px;
             text-align: center;
         }
         footer {
@@ -103,6 +112,18 @@
             text-decoration: none;
         }
         @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .banner-container {
+                order: -1;
+                margin-right: 0;
+                width: 100%;
+            }
+            .banner-container iframe {
+                width: 100%;
+                height: auto;
+            }
             nav ul {
                 flex-direction: column;
                 align-items: center;
@@ -128,42 +149,45 @@
         </nav>
     </header>
 
-    <main role="main">
-        <section id="home" class="section">
-            <div class="search-widget">
-                <iframe src="https://coupa.ng/cfO0dP" width="100%" height="75" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-            </div>
+    <div class="main-container">
+        <div class="banner-container">
+            <iframe src="https://ads-partners.coupang.com/widgets.html?id=791671&template=carousel&trackingCode=AF0820677&subId=&width=680&height=140&tsource=" width="200" height="600" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+        </div>
 
-            <div class="content-container">
-               <div class="iframe-item">
-                    <iframe src="https://coupa.ng/cfOY0p" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+        <main role="main">
+            <section id="home" class="section">
+                <div class="search-widget">
+                    <iframe src="https://coupa.ng/cfO0dP" width="100%" height="75" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
                 </div>
-                <div class="iframe-item">
-                    <iframe src="https://coupa.ng/cfOZFi" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                </div>
-                <div class="iframe-item">
-                    <iframe src="https://coupa.ng/cfOZSZ" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                </div>
-                <div class="iframe-item">
-                    <iframe src="https://coupa.ng/cfOZTm" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                </div>
-                <div class="iframe-item">
-                    <iframe src="https://coupa.ng/cfOZTH" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                </div>
-                <div class="iframe-item">
-                    <iframe src="https://coupa.ng/cfOZT3" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                </div>
-                <div class="iframe-item">
-                    <iframe src="https://coupa.ng/cfO0wn" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                </div>
-                <div class="iframe-item">
-                    <iframe src="https://coupa.ng/cfO0Yt" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                </div>
-            </div>
 
-            <p class="disclaimer">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
-        </section>
-    </main>
+                <div class="content-container">
+                   <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfOY0p" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfOZFi" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfOZSZ" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfOZTm" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfOZTH" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfOZT3" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfO0wn" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                </div>
+
+                <p class="disclaimer">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+            </section>
+        </main>
+    </div>
 
     <footer>
         <a href="https://blog.naver.com/nocklog" target="_blank" rel="noopener noreferrer">낙로그 가기</a>
