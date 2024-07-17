@@ -13,6 +13,8 @@
             --accent-color: #3498db;
             --baemin-color: #48D1CC;
             --coupang-color: #FF6F61;
+            --naver-color: #03c75a;
+            --google-color: #ffffff;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -58,11 +60,27 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.3s ease, background-color 0.3s ease;
+            transition: all 0.3s ease;
             padding: 5px 10px;
             border-radius: 5px;
         }
-        nav ul li a:hover, nav ul li a:focus, .footer-content a:hover, .footer-content a:focus {
+        .naver-link {
+            background-color: rgba(3, 199, 90, 0.6);
+        }
+        .google-link {
+            background-color: rgba(255, 255, 255, 0.6);
+            color: #4285F4;
+        }
+        .naver-link:hover, .naver-link:focus {
+            background-color: rgba(3, 199, 90, 0.8);
+        }
+        .google-link:hover, .google-link:focus {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        nav ul li a:not(.naver-link):not(.google-link):hover,
+        nav ul li a:not(.naver-link):not(.google-link):focus,
+        .footer-content a:not(.naver-link):not(.google-link):hover,
+        .footer-content a:not(.naver-link):not(.google-link):focus {
             color: var(--accent-color);
             background-color: rgba(255, 255, 255, 0.1);
         }
@@ -201,9 +219,9 @@
     <header id="header">
         <nav>
             <ul>
-                <li><a href="https://www.naver.com" target="_blank">네이버</a></li>
+                <li><a href="https://www.naver.com" target="_blank" class="naver-link">네이버</a></li>
                 <li><a href="#home" id="home-button">홈</a></li>
-                <li><a href="https://www.google.com" target="_blank">구글</a></li>
+                <li><a href="https://www.google.com" target="_blank" class="google-link">구글</a></li>
             </ul>
         </nav>
     </header>
@@ -292,9 +310,9 @@
 
     <footer id="footer">
         <div class="footer-content">
-            <a href="https://www.naver.com" target="_blank">네이버</a>
+            <a href="https://www.naver.com" target="_blank" class="naver-link">네이버</a>
             <a href="https://blog.naver.com/nocklog" target="_blank" rel="noopener noreferrer">낙지 블로그</a>
-            <a href="https://www.google.com" target="_blank">구글</a>
+            <a href="https://www.google.com" target="_blank" class="google-link">구글</a>
         </div>
     </footer>
 
