@@ -6,8 +6,8 @@
     <title>낙지</title>
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
+            --primary-color: #4a90e2;
+            --secondary-color: #5ca1e6;
             --background-color: #ecf0f1;
             --text-color: #2c3e50;
             --accent-color: #3498db;
@@ -142,6 +142,7 @@
         footer a {
             color: white;
             text-decoration: none;
+            margin: 0 10px;
         }
         @media (max-width: 768px) {
             .main-container {
@@ -221,6 +222,8 @@
         <nav>
             <ul>
                 <li><a href="#home" id="home-button">홈</a></li>
+                <li><a href="https://www.naver.com" target="_blank">네이버</a></li>
+                <li><a href="https://www.google.com" target="_blank">구글</a></li>
             </ul>
         </nav>
     </header>
@@ -308,6 +311,8 @@
 
     <footer id="footer">
         <a href="https://blog.naver.com/nocklog" target="_blank" rel="noopener noreferrer">낙지 블로그 가기</a>
+        <a href="https://www.naver.com" target="_blank">네이버</a>
+        <a href="https://www.google.com" target="_blank">구글</a>
     </footer>
 
     <script>
@@ -325,16 +330,14 @@
             homeButton.addEventListener('click', scrollToHome);
             
             // 헤더 전체를 클릭했을 때 홈으로 스크롤
-            header.addEventListener('click', scrollToHome);
-            
-            // 푸터 전체를 클릭했을 때 블로그로 이동
-            footer.addEventListener('click', function(e) {
-                // 이미 링크를 클릭한 경우 기본 동작 유지
-                if (e.target.tagName === 'A') return;
-                
-                e.preventDefault();
-                window.open('https://blog.naver.com/nocklog', '_blank');
+            header.addEventListener('click', function(e) {
+                // 네이버나 구글 링크를 클릭한 경우 기본 동작 유지
+                if (e.target.tagName === 'A' && e.target.id !== 'home-button') return;
+                scrollToHome(e);
             });
+            
+            // 푸터 전체를 클릭했을 때 블로그로 이동하는 기능 제거
+            // 대신 각 링크가 자체적으로 작동하도록 함
         });
     </script>
 </body>
