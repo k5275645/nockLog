@@ -5,12 +5,214 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>낙지</title>
     <style>
-        /* 기존 스타일 유지 */
-        /* ... */
-        
-        /* 헤더와 푸터에 커서 스타일 추가 */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --background-color: #ecf0f1;
+            --text-color: #2c3e50;
+            --accent-color: #3498db;
+            --baemin-color: #48D1CC;
+            --coupang-color: #FF6F61;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
         header, footer {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
             cursor: pointer;
+        }
+        header {
+            top: 0;
+            padding: 0.5rem 0;
+        }
+        footer {
+            bottom: 0;
+            padding: 0.7rem 0;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        nav ul li a:hover, nav ul li a:focus {
+            color: var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .main-container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1600px;
+            margin: 60px auto;
+            padding: 0 20px 60px;
+            box-sizing: border-box;
+        }
+        .banner-container {
+            flex: 0 0 10px;
+            margin-bottom: 20px;
+        }
+        .left-banner {
+            margin-right: 20px;
+        }
+        .right-banner {
+            margin-left: 20px;
+        }
+        main {
+            flex: 1;
+            min-width: 300px;
+        }
+        section {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .search-widget {
+            margin-bottom: 15px;
+        }
+        .content-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            justify-items: center;
+        }
+        .iframe-item {
+            width: 100%;
+            max-width: 150px;
+            text-align: center;
+        }
+        .disclaimer, .referral-id, .hashtags {
+            font-size: 0.9em;
+            text-align: center;
+            margin-top: 15px;
+        }
+        .delivery-info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .delivery-item {
+            text-align: center;
+            margin: 10px;
+            width: 45%;
+        }
+        .coupang-button, .baemin-button {
+            width: 200px;
+            height: 60px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .coupang-button {
+            background-color: var(--coupang-color);
+        }
+        .baemin-button {
+            background-color: var(--baemin-color);
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                margin-top: 40px;
+                margin-bottom: 60px;
+            }
+            .banner-container {
+                width: 100%;
+                margin: 0 0 0 0;
+            }
+            .left-banner {
+                order: -1;
+            }
+            .right-banner {
+                order: 1;
+            }
+            .banner-container iframe {
+                width: 100%;
+                height: 100px;
+            }
+            .content-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .iframe-item, .delivery-item {
+                max-width: 100%;
+                width: 100%;
+            }
+            .coupang-button, .baemin-button {
+                width: 180px;
+                height: 54px;
+            }
+        }
+        @media (min-width: 769px) {
+            .main-container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            .banner-container {
+                position: sticky;
+                top: 60px;
+                height: calc(100vh - 120px);
+            }
+            .banner-container iframe {
+                width: 200px;
+                height: 100%;
+            }
+            main {
+                flex: 1;
+                min-width: 600px;
+            }
+            .content-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            .iframe-item {
+                max-width: 200px;
+            }
+        }
+        .watermelon-image {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        @media (min-width: 768px) {
+            .watermelon-image {
+                max-width: 50%;
+            }
         }
     </style>
 </head>
@@ -23,8 +225,86 @@
         </nav>
     </header>
 
-    <!-- 기존 내용 유지 -->
-    <!-- ... -->
+    <div class="main-container">
+        <div class="banner-container left-banner">
+            <iframe src="https://ads-partners.coupang.com/widgets.html?id=791674&template=carousel&trackingCode=AF0820677&subId=&width=100&height=600&tsource=" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+        </div>
+
+        <main role="main">
+            <section id="home" class="section">
+                <div class="search-widget">
+                    <iframe src="https://coupa.ng/cfO0dP" width="100%" height="75" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                </div>
+
+                <div class="content-container">
+                   <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfOY0p" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfOZFi" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfOZSZ" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfOZTm" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfOZTH" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfOZT3" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfO0wn" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfO1wn" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfPeLJ" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                    <div class="iframe-item">
+                        <iframe src="https://coupa.ng/cfPeL6" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                    </div>
+                </div>
+
+                <img src="images/wide_world.png" alt="Watermelon Person" class="watermelon-image">
+                
+                <p class="disclaimer">낙지의 github page 입니다.</p>
+                <p class="disclaimer">그대의 방문에 진심으로 감사드립니다. 그래도 우린 좋지 아니한가.</p>
+
+                <div class="delivery-info">
+                    <div class="delivery-item">
+                        <div class="referral-id">
+                            <p>쿠팡이츠 추천인ID사용시<br/>가입자와 추천인에게 1만원씩 지급</p>
+                            <p>쿠팡이츠 추천인ID : 05PUTQ06</p>
+                        </div>
+                        <a href="https://eatscourier.app.link/hp7FxmyKaLb" target="_blank">
+                            <button class="coupang-button">쿠팡이츠 배달하러가기</button>
+                        </a>
+                    </div>
+                    <div class="delivery-item">
+                        <div class="referral-id">
+                            <p>배민커넥트 추천인ID 입력 및 미션 달성 시<br/> 최대 20만원 보너스</p>
+                            <p>배민커넥트 추천인ID : BC564522</p>
+                        </div>
+                        <a href="https://baeminconnect.onelink.me/k618/3ccpicgp" target="_blank">
+                            <button class="baemin-button">배민커넥트 배달하러가기</button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hashtags">
+                    <p>#쿠팡이츠배달파트너 #배민커넥트</p>
+                </div>
+            </section>
+        </main>
+
+        <div class="banner-container right-banner">
+            <iframe src="https://ads-partners.coupang.com/widgets.html?id=791674&template=carousel&trackingCode=AF0820677&subId=&width=100&height=600&tsource=" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+        </div>
+    </div>
 
     <footer id="footer">
         <a href="https://blog.naver.com/nocklog" target="_blank" rel="noopener noreferrer">낙지 블로그 가기</a>
