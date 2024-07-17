@@ -49,10 +49,16 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
-        nav ul li a:hover {
+        nav ul li a:hover, nav ul li a:focus {
             color: var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        nav ul li a:active {
+            background-color: rgba(255, 255, 255, 0.2);
         }
         main {
             flex-grow: 1;
@@ -117,13 +123,13 @@
     <header>
         <nav>
             <ul>
-                <li><a href="#home">홈</a></li>
+                <li><a href="#home" id="home-button">홈</a></li>
             </ul>
         </nav>
     </header>
 
     <main role="main">
-        <section id="products" class="section">
+        <section id="home" class="section">
             <div class="search-widget">
                 <iframe src="https://coupa.ng/cfO0dP" width="100%" height="75" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
             </div>
@@ -159,5 +165,17 @@
     <footer>
         <a href="https://blog.naver.com/nocklog" target="_blank" rel="noopener noreferrer">낙로그 가기</a>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var homeButton = document.getElementById('home-button');
+            var homeSection = document.getElementById('home');
+            
+            homeButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                homeSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>
