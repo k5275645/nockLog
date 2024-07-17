@@ -39,7 +39,7 @@
         }
         footer {
             margin-top: auto;
-            padding: 0.7rem 0;  /* Increased padding for footer */
+            padding: 0.7rem 0;
         }
         nav ul {
             display: flex;
@@ -56,15 +56,12 @@
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease, background-color 0.3s ease;
-            padding: 5px 5px;
+            padding: 5px;
             border-radius: 5px;
         }
         nav ul li a:hover, nav ul li a:focus {
             color: var(--accent-color);
             background-color: rgba(255, 255, 255, 0.1);
-        }
-        nav ul li a:active {
-            background-color: rgba(255, 255, 255, 0.2);
         }
         .main-container {
             display: flex;
@@ -76,8 +73,13 @@
         }
         .banner-container {
             flex: 0 0 200px;
-            margin-right: 20px;
             margin-bottom: 20px;
+        }
+        .left-banner {
+            margin-right: 20px;
+        }
+        .right-banner {
+            margin-left: 20px;
         }
         main {
             flex: 1;
@@ -104,15 +106,10 @@
             max-width: 150px;
             text-align: center;
         }
-        .disclaimer {
-            font-size: 0.8em;
-            color: #777;
-            margin-top: 15px;
+        .disclaimer, .referral-id, .hashtags {
+            font-size: 0.9em;
             text-align: center;
-        }
-        footer a {
-            color: white;
-            text-decoration: none;
+            margin-top: 15px;
         }
         .delivery-info {
             display: flex;
@@ -124,16 +121,6 @@
             text-align: center;
             margin: 10px;
             width: 45%;
-        }
-        .delivery-item a {
-            display: inline-block;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: opacity 0.3s ease;
-        }
-        .delivery-item a:hover {
-            opacity: 0.8;
         }
         .coupang-button, .baemin-button {
             width: 200px;
@@ -151,26 +138,20 @@
         .baemin-button {
             background-color: var(--baemin-color);
         }
-        .referral-id {
-            font-size: 0.9em;
-            font-weight: bold;
-            margin-top: 10px;
-            text-align: center;
-        }
-        .hashtags {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 0.9em;
-            color: var(--accent-color);
-        }
         @media (max-width: 768px) {
             .main-container {
                 flex-direction: column;
+                margin-top: 40px;
             }
             .banner-container {
-                order: -1;
-                margin-right: 0;
                 width: 100%;
+                margin: 0 0 10px 0;
+            }
+            .left-banner {
+                order: -1;
+            }
+            .right-banner {
+                order: 1;
             }
             .banner-container iframe {
                 width: 100%;
@@ -179,32 +160,28 @@
             .content-container {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .iframe-item {
+            .iframe-item, .delivery-item {
                 max-width: 100%;
-            }
-            .delivery-item {
                 width: 100%;
             }
             .coupang-button, .baemin-button {
                 width: 180px;
                 height: 54px;
             }
-            main {
-                margin-top: 10px;  /* Added margin to reduce gap with banner */
-            }
         }
         @media (min-width: 769px) {
             .main-container {
                 flex-direction: row;
+                align-items: flex-start;
             }
             .banner-container {
-                order: -1;
-                flex: 0 0 200px;
-                margin-right: 20px;
+                position: sticky;
+                top: 60px;
+                height: calc(100vh - 80px);
             }
             .banner-container iframe {
                 width: 200px;
-                height: 600px;
+                height: 100%;
             }
             main {
                 flex: 1;
@@ -215,110 +192,6 @@
             }
             .iframe-item {
                 max-width: 200px;
-            }
-        }
-        .main-container {
-            display: flex;
-            flex-wrap: wrap;
-            max-width: 1600px;
-            margin: 60px auto 20px;
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-        .banner-container {
-            flex: 0 0 200px;
-            margin-right: 20px;
-            margin-bottom: 20px;
-        }
-        main {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        /* 새로운 스타일 추가 */
-        @media (min-width: 769px) {
-            .main-container {
-                flex-direction: row;
-                align-items: stretch; /* 자식 요소들을 컨테이너 높이에 맞춤 */
-            }
-            .banner-container {
-                order: -1;
-                flex: 0 0 200px;
-                margin-right: 20px;
-                display: flex;
-                flex-direction: column;
-            }
-            .banner-container iframe {
-                width: 200px;
-                flex-grow: 1; /* iframe이 배너 컨테이너를 채우도록 함 */
-            }
-            main {
-                flex: 1;
-                min-width: 600px;
-                display: flex;
-                flex-direction: column;
-            }
-            #home {
-                flex-grow: 1; /* 홈 섹션이 메인 콘텐츠 영역을 채우도록 함 */
-            }
-        }
-        @media (max-width: 768px) {
-            .main-container {
-                flex-direction: column;
-                margin-top: 40px; /* 헤더 아래 여백 줄임 */
-            }
-            .banner-container {
-                order: -1;
-                margin-right: 0;
-                width: 100%;
-                margin-bottom: 10px; /* 배너와 메인 콘텐츠 사이 간격 줄임 */
-            }
-            .banner-container iframe {
-                width: 100%;
-                height: 100px;
-            }
-            main {
-                margin-top: 0; /* 메인 콘텐츠 상단 여백 제거 */
-            }
-            .content-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .iframe-item {
-                max-width: 100%;
-            }
-            .delivery-item {
-                width: 100%;
-            }
-            .coupang-button, .baemin-button {
-                width: 180px;
-                height: 54px;
-            }
-        }
-        @media (min-width: 769px) {
-            .main-container {
-                flex-direction: row;
-                align-items: stretch;
-                margin-top: 60px; /* 데스크톱 뷰에서 여백 유지 */
-            }
-            .banner-container {
-                order: -1;
-                flex: 0 0 200px;
-                margin-right: 20px;
-                display: flex;
-                flex-direction: column;
-            }
-            .banner-container iframe {
-                width: 200px;
-                flex-grow: 1;
-            }
-            main {
-                flex: 1;
-                min-width: 600px;
-                display: flex;
-                flex-direction: column;
-            }
-            #home {
-                flex-grow: 1;
             }
         }
     </style>
@@ -333,7 +206,7 @@
     </header>
 
     <div class="main-container">
-        <div class="banner-container">
+        <div class="banner-container left-banner">
             <iframe src="https://ads-partners.coupang.com/widgets.html?id=791674&template=carousel&trackingCode=AF0820677&subId=&width=100&height=600&tsource=" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
         </div>
 
@@ -344,30 +217,7 @@
                 </div>
 
                 <div class="content-container">
-                   <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOY0p" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOZFi" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOZSZ" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOZTm" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOZTH" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOZT3" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfO0wn" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfO1wn" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
+                    <!-- Your iframe items here -->
                 </div>
 
                 <p class="disclaimer">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
@@ -398,6 +248,10 @@
                 </div>
             </section>
         </main>
+
+        <div class="banner-container right-banner">
+            <iframe src="https://coupa.ng/cfO0dP" width="200" height="600" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+        </div>
     </div>
 
     <footer>
