@@ -44,6 +44,8 @@ main {
     max-width: 1200px;
     margin: 80px auto 20px;
     padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 section {
     background-color: white;
@@ -57,7 +59,7 @@ h1, h2 {
 }
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     justify-items: center;
 }
@@ -91,7 +93,7 @@ footer {
     bottom: 0;
     width: 100%;
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     nav ul {
         flex-direction: column;
         align-items: center;
@@ -100,6 +102,6 @@ footer {
         margin: 5px 0;
     }
     .product-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 }
