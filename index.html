@@ -3,15 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>깃허브 페이지</title>
+    <title>쿠팡 파트너스 링크</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .iframe-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            justify-items: center;
+            margin-bottom: 20px;
+        }
+        .disclaimer {
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav>
             <ul>
                 <li><a href="#home">홈</a></li>
-                <li><a href="#about">소개</a></li>
                 <li><a href="#products">제품</a></li>
                 <li><a href="#contact">연락처</a></li>
             </ul>
@@ -19,42 +33,19 @@
     </header>
 
     <main>
-        <section id="home">
-            <h1>환영합니다</h1>
-            <p class="tagline">혁신적인 제품과 서비스를 제공합니다</p>
-        </section>
-
-        <section id="about">
-            <h2>회사 소개</h2>
-            <p>우리는 고객 만족을 최우선으로 생각하는 기업입니다.</p>
-        </section>
-
         <section id="products">
-            <h2>제품 목록</h2>
-            <div class="product-grid">
-                <div class="product-item">
-                    <h3>제품 1</h3>
-                    <p class="small-font">혁신적인 기능을 갖춘 제품입니다.</p>
-                    <a href="#">자세히 보기</a>
-                </div>
-                <div class="product-item">
-                    <h3>제품 2</h3>
-                    <p class="small-font">사용자 친화적인 디자인의 제품입니다.</p>
-                    <a href="#">자세히 보기</a>
-                </div>
-                <!-- 추가 제품 아이템 -->
+            <h2>추천 제품</h2>
+            <div class="iframe-container">
+                <iframe src="https://coupa.ng/cfOY0p" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                <iframe src="https://coupa.ng/cfOZFi" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                <!-- 필요에 따라 추가 iframe 삽입 가능 -->
             </div>
-        </section>
-
-        <section id="contact">
-            <h2>연락처</h2>
-            <p>이메일: info@example.com</p>
-            <p>전화: 123-456-7890</p>
+            <p class="disclaimer">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 깃허브 페이지. 모든 권리 보유.</p>
+        <p>&copy; 2024 쿠팡 파트너스 링크. 모든 권리 보유.</p>
     </footer>
 
     <script src="script.js"></script>
