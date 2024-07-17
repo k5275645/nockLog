@@ -217,6 +217,51 @@
                 max-width: 200px;
             }
         }
+        .main-container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1600px;
+            margin: 60px auto 20px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .banner-container {
+            flex: 0 0 200px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+        main {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        /* 새로운 스타일 추가 */
+        @media (min-width: 769px) {
+            .main-container {
+                flex-direction: row;
+                align-items: stretch; /* 자식 요소들을 컨테이너 높이에 맞춤 */
+            }
+            .banner-container {
+                order: -1;
+                flex: 0 0 200px;
+                margin-right: 20px;
+                display: flex;
+                flex-direction: column;
+            }
+            .banner-container iframe {
+                width: 200px;
+                flex-grow: 1; /* iframe이 배너 컨테이너를 채우도록 함 */
+            }
+            main {
+                flex: 1;
+                min-width: 600px;
+                display: flex;
+                flex-direction: column;
+            }
+            #home {
+                flex-grow: 1; /* 홈 섹션이 메인 콘텐츠 영역을 채우도록 함 */
+            }
+        }
     </style>
 </head>
 <body>
