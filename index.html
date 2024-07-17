@@ -6,12 +6,30 @@
     <title>낙지 깃헙 페이지</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .iframe-container {
+        .content-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             justify-items: center;
             margin-bottom: 20px;
+        }
+        .iframe-item, .link-item {
+            width: 100%;
+            max-width: 200px;
+            text-align: center;
+        }
+        .link-item a {
+            display: inline-block;
+            word-break: break-all;
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .link-item a:hover {
+            background-color: var(--secondary-color);
         }
         .disclaimer {
             font-size: 0.8em;
@@ -33,13 +51,29 @@
     <main>
         <section id="products">
             <h2>추천 제품</h2>
-            <div class="iframe-container">
-                <iframe src="https://coupa.ng/cfOY0p" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                <iframe src="https://coupa.ng/cfOZFi" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                <iframe src="https://coupa.ng/cfOZSZ" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                <iframe src="https://coupa.ng/cfOZTm" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                <iframe src="https://coupa.ng/cfOZTH" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                <iframe src="https://coupa.ng/cfOZT3" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+            <div class="content-container">
+                <div class="iframe-item">
+                    <iframe src="https://coupa.ng/cfOY0p" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                </div>
+                <div class="iframe-item">
+                    <iframe src="https://coupa.ng/cfOZFi" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                </div>
+                <div class="iframe-item">
+                    <iframe src="https://coupa.ng/cfOZSZ" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                </div>
+                <div class="iframe-item">
+                    <iframe src="https://coupa.ng/cfOZTm" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                </div>
+                <div class="iframe-item">
+                    <iframe src="https://coupa.ng/cfOZTH" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                </div>
+                <div class="iframe-item">
+                    <iframe src="https://coupa.ng/cfOZT3" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+                </div>
+                <div class="link-item">
+                    
+                    <a href="https://link.coupang.com/a/bJZZtc" target="_blank" rel="noopener noreferrer">쿠팡 추천 상품 링크</a>
+                </div>
                 <!-- 필요에 따라 추가 iframe 삽입 가능 -->
             </div>
             <p class="disclaimer">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
