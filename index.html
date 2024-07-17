@@ -12,6 +12,7 @@
             --text-color: #2c3e50;
             --accent-color: #3498db;
             --baemin-color: #48D1CC;
+            --coupang-color: #FF6F61;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -137,22 +138,20 @@
             margin-top: 10px;
             font-size: 0.9em;
         }
-        .coupang-button {
+        .coupang-button, .baemin-button {
             width: 200px;
             height: 60px;
-            background: url('images/coupang_logo.png') no-repeat center center;
-            background-size: contain;
-            border: none;
-            cursor: pointer;
-        }
-        .baemin-button {
-            width: 200px;
-            height: 60px;
-            background-color: var(--baemin-color);
             color: white;
             border: none;
             cursor: pointer;
             font-size: 1em;
+            border-radius: 5px;
+        }
+        .coupang-button {
+            background-color: var(--coupang-color);
+        }
+        .baemin-button {
+            background-color: var(--baemin-color);
         }
         .referral-id {
             font-size: 1.1em;
@@ -198,6 +197,18 @@
             .coupang-button, .baemin-button {
                 width: 180px;
                 height: 54px;
+            }
+        }
+        @media (min-width: 769px) {
+            main {
+                flex: 1;
+                min-width: 600px;
+            }
+            .content-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            .iframe-item {
+                max-width: 200px;
             }
         }
     </style>
