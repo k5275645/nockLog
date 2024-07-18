@@ -500,29 +500,12 @@
             observer.observe(item);
         });
     
-        // 3D element using Three.js
+        // Three.js 설정
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true });
         
         const container = document.getElementById('threejs-container');
-        
-        // Create octopus-like shape
-        const bodyGeometry = new THREE.SphereGeometry(1, 32, 32);
-        const bodyMaterial = new THREE.MeshBasicMaterial({ color: 0xFF6347, wireframe: true });
-        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
-        scene.add(body);
-        
-        // Create tentacles
-        const tentacleMaterial = new THREE.MeshBasicMaterial({ color: 0xFF6347, wireframe: true });
-        for (let i = 0; i < 8; i++) {
-            const tentacleGeometry = new THREE.CylinderGeometry(0.1, 0.05, 2, 8);
-            const tentacle = new THREE.Mesh(tentacleGeometry, tentacleMaterial);
-            tentacle.position.y = -1;
-            tentacle.rotation.x = Math.PI / 4;
-            tentacle.rotation.y = (i / 8) * Math.PI * 2;
-            body.add(tentacle);
-        }
         
         function resizeRenderer() {
             const width = container.clientWidth;
@@ -530,27 +513,72 @@
             renderer.setSize(width, height);
             camera.aspect = width / height;
             camera.updateProjectionMatrix();
-    
-            // Adjust the octopus size based on the container size
-            const scale = Math.min(width, height) / 300;
-            body.scale.set(scale, scale, scale);
         }
         
         resizeRenderer();
         container.appendChild(renderer.domElement);
         
-        // Center the renderer in the container
-        renderer.domElement.style.display = 'block';
-        renderer.domElement.style.margin = 'auto';
+        // 파티클 시스템 설정
+        const particlesCount = 1000;
+        const positions = new Float32Array(particlesCount * 3);
+        const colors = new Float32Array(particlesCount * 3);
+        
+        for (let i = 0; i < particlesCount * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 10;
+            colors[i] = Math.random();
+        }
+        
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+        
+        const material = new THREE.PointsMaterial({
+            size: 0.1,
+            vertexColors: true,
+            blending: THREE.AdditiveBlending,
+            transparent: true
+        });
+        
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
         
         camera.position.z = 5;
         
+        // 마우스 상호작용
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+        
+        // 애니메이션 루프
         function animate() {
             requestAnimationFrame(animate);
-            body.rotation.x += 0.01;
-            body.rotation.y += 0.01;
+        
+            particles.rotation.x += 0.001;
+            particles.rotation.y += 0.002;
+        
+            // 마우스 위치에 따라 파티클 움직임 조정
+            particles.rotation.x += mouseY * 0.05;
+            particles.rotation.y += mouseX * 0.05;
+        
+            const positions = particles.geometry.attributes.position.array;
+            for (let i = 0; i < positions.length; i += 3) {
+                const x = positions[i];
+                const y = positions[i + 1];
+                const z = positions[i + 2];
+        
+                positions[i] = x + Math.sin(Date.now() * 0.001 + x) * 0.01;
+                positions[i + 1] = y + Math.cos(Date.now() * 0.002 + y) * 0.01;
+                positions[i + 2] = z + Math.sin(Date.now() * 0.001 + z) * 0.01;
+            }
+            particles.geometry.attributes.position.needsUpdate = true;
+        
             renderer.render(scene, camera);
         }
+        
         animate();
         
         // Function to resize images
