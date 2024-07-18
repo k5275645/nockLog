@@ -53,10 +53,11 @@
     header, footer {
         background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
         color: white;
-        padding: 0.5rem 0;
+        padding: 0;
         width: 100%;
         height: 50px; /* 고정 높이 설정 */
         display: flex;
+        justify-content: center; /* 가로 중앙 정렬 */
         align-items: center; /* 세로 중앙 정렬 */
     }
     header {
@@ -71,14 +72,19 @@
     }
     nav ul, .footer-content {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-between; /* 균등한 간격으로 정렬 */
         align-items: center;
         list-style-type: none;
-        padding: 0 20px;
+        padding: 0;
         max-width: 1200px;
         margin: 0 auto;
         width: 100%;
     }
+    
+    nav ul li, .footer-content a {
+        margin: 0 10px; /* 각 항목 사이의 간격 조정 */
+    }
+    
     nav ul li a, .footer-content a {
         color: white;
         text-decoration: none;
