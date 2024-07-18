@@ -132,7 +132,7 @@
     .banner-container iframe {
         width: 100%;
         height: 100%;
-        min-height: 300px;
+        min-height: 200px;
     }
     main {
         flex: 2;
@@ -192,7 +192,7 @@
     .baemin-button {
         background-color: var(--baemin-color);
     }
-    .watermelon-image {
+    .center-image {
         display: block;
         max-width: 100%;
         height: auto;
@@ -251,7 +251,7 @@
             height: auto;
         }
         .banner-container iframe {
-            height: 300px;
+            height: 200px;
         }
         main {
             max-width: 100%;
@@ -365,7 +365,7 @@
                     </div>
                 </div>
 
-                <img src="images/cozy_dog.png" alt="Watermelon Person" class="watermelon-image">
+                <img src="images/cozy_dog.png" alt="Center Image" class="center-image">
                 
                 <p class="disclaimer">낙지의 github page 입니다.</p>
                 <p class="disclaimer">나무가 사라져간 산길 주인 없는 바다<br/>그래도 좋지아니한가 내 마음대로 되는 세상<br/>밤이 오면 싸워왔던 기억<br/>일기를 쓸만한 노트와 연필이 생기지 않았나<br/>내 마음대로 그린 세상우린 노래해 더 나아질거야<br/>우린 추억해 부질없이 지난날들<br/>바보같이 지난날들<br/>그래도 너는 좋지아니한가</p>
@@ -584,9 +584,10 @@
         // Function to resize images
         function resizeImages() {
             const watermelonImage = document.querySelector('.watermelon-image');
-            if (watermelonImage) {
-                const maxWidth = Math.min(watermelonImage.parentElement.clientWidth, 800);
-                watermelonImage.style.maxWidth = maxWidth + 'px';
+            const centerImage = document.querySelector('.center-image');
+            if (centerImage) {
+                centerImage.style.maxWidth = '100%';
+                centerImage.style.height = 'auto';
             }
         }
     
@@ -602,7 +603,7 @@
             } else {
                 banners.forEach(banner => {
                     banner.style.height = 'auto';
-                    banner.style.maxHeight = '300px';
+                    banner.style.maxHeight = '200px';
                 });
             }
         }
@@ -614,13 +615,18 @@
             resizeTimeout = setTimeout(() => {
                 resizeCanvas();
                 resizeRenderer();
-                resizeImages();
+                resizeImages(); // Include resizeImages here
                 adjustBannerHeights();
             }, 250);
         }
         
+        // Event listeners
         window.addEventListener('resize', handleResize);
-    
+        window.addEventListener('load', () => {
+            handleResize(); // This will also call resizeImages
+            // Any other load-specific operations can go here
+        });
+        
         // Initial resize call
         handleResize();
     });
