@@ -35,10 +35,9 @@
             background-color: var(--background-color);
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* 최소 높이를 뷰포트 높이로 설정 */
+            min-height: 100vh;
             transition: background-color 0.3s ease, color 0.3s ease;
             overflow-x: hidden;
-            margin: 0; /* 기본 마진 제거 */
         }
         #backgroundCanvas {
             position: fixed;
@@ -61,11 +60,7 @@
             z-index: 1000;
         }
         footer {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 0.5rem 0;
-            width: 100%;
-            position: relative; /* sticky 대신 relative로 변경 */
+            position: sticky;
             bottom: 0;
             z-index: 1000;
         }
@@ -98,13 +93,13 @@
             opacity: 0.8;
         }
         .main-container {
-            flex: 1; /* 남은 공간을 모두 차지하도록 설정 */
             display: flex;
             justify-content: center;
             width: 100%;
             max-width: 1600px;
             margin: 20px auto;
             padding: 0 20px;
+            flex: 1;
         }
         .banner-container {
             flex: 1;
@@ -262,22 +257,16 @@
                 flex-direction: column;
                 align-items: stretch;
             }
-
             .banner-container {
                 max-height: 300px;
                 overflow: hidden;
             }
-
             .content-container {
                 grid-template-columns: repeat(2, 1fr);
             }
-
             .iframe-item {
                 width: 100%;
                 max-width: none;
-            }
-            body {
-                padding-bottom: 0; /* 기존의 60px 패딩 제거 */
             }
         }
         @media (max-width: 480px) {
