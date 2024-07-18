@@ -249,27 +249,36 @@
                 flex: 1 1 100%;
             }
         }
-        @media (max-width: 576px) {
+        @media (max-width: 768px) {
             .main-container {
-                padding: 0 10px;
+                flex-direction: column;
+                align-items: stretch;
             }
-            section {
-                padding: 10px;
+
+            .banner-container {
+                max-height: 300px;
+                overflow: hidden;
             }
-            .theme-toggle {
-                top: 5px;
-                right: 5px;
-                padding: 3px 6px;
-                font-size: 0.8em;
+
+            .content-container {
+                grid-template-columns: repeat(2, 1fr);
             }
-            #threejs-container {
-                height: 200px;
-            }
-            .watermelon-image {
-                max-width: 100%;
-            }
+
             .iframe-item {
-                max-width: 100%;
+                width: 100%;
+                max-width: none;
+            }
+
+            footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+            }
+
+            body {
+                padding-bottom: 60px; /* footer의 높이만큼 여백 추가 */
             }
         }
         @media (max-width: 480px) {
@@ -536,19 +545,19 @@
             }
         }
     
-        // Function to adjust banner heights
+        // 배너 높이 조절 함수 수정
         function adjustBannerHeights() {
-            const mainContent = document.querySelector('main');
             const banners = document.querySelectorAll('.banner-container');
-            const mainHeight = mainContent.offsetHeight;
-    
             if (window.innerWidth >= 1200) {
+                const mainContent = document.querySelector('main');
+                const mainHeight = mainContent.offsetHeight;
                 banners.forEach(banner => {
                     banner.style.height = `${mainHeight}px`;
                 });
             } else {
                 banners.forEach(banner => {
                     banner.style.height = 'auto';
+                    banner.style.maxHeight = '300px';
                 });
             }
         }
