@@ -172,8 +172,32 @@
                 flex-direction: column;
                 margin-top: 40px;
                 margin-bottom: 60px;
+                padding: 0;
             }
-            /* ... (기존 모바일 스타일 유지) ... */
+            .banner-container {
+                width: 100%;
+                margin: 0;
+                text-align: center;
+            }
+            .banner-container iframe {
+                width: 100%;
+                max-width: 320px;
+                height: 100px;
+            }
+            .delivery-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            .delivery-item {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .coupang-button, .baemin-button {
+                width: 80%;
+                max-width: 200px;
+            }
             nav ul, .footer-content {
                 justify-content: space-around;
             }
@@ -249,7 +273,7 @@
 
     <div class="main-container">
         <div class="banner-container left-banner">
-            <iframe src="https://ads-partners.coupang.com/widgets.html?id=791674&template=carousel&trackingCode=AF0820677&subId=&width=100&height=600&tsource=" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+            <iframe src="https://ads-partners.coupang.com/widgets.html?id=791674&template=carousel&trackingCode=AF0820677&subId=&width=100&height=100&tsource=" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
         </div>
 
         <main role="main">
@@ -306,26 +330,26 @@
                 <p class="disclaimer">나무가 사라져간 산길 주인 없는 바다<br/>그래도 좋지아니한가 내 마음대로 되는 세상<br/>밤이 오면 싸워왔던 기억<br/>일기를 쓸만한 노트와 연필이 생기지 않았나<br/>내 마음대로 그린 세상우린 노래해 더 나아질거야<br/>우린 추억해 부질없이 지난날들<br/>바보같이 지난날들<br/>그래도 너는 좋지아니한가</p>
                 <p class="disclaimer">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
 
-                <div class="delivery-info">
-                    <div class="delivery-item">
-                        <div class="referral-id">
-                            <p>쿠팡이츠 추천인ID사용시<br/>가입자와 추천인에게 1만원씩 지급</p>
-                            <p>쿠팡이츠 추천인ID : 05PUTQ06</p>
-                        </div>
-                        <a href="https://eatscourier.app.link/hp7FxmyKaLb" target="_blank">
-                            <button class="coupang-button">쿠팡이츠 배달하러가기</button>
-                        </a>
+            <div class="delivery-info">
+                <div class="delivery-item">
+                    <div class="referral-id">
+                        <p>쿠팡이츠 추천인ID사용시<br/>가입자와 추천인에게 1만원씩 지급</p>
+                        <p>쿠팡이츠 추천인ID : 05PUTQ06</p>
                     </div>
-                    <div class="delivery-item">
-                        <div class="referral-id">
-                            <p>배민커넥트 추천인ID 입력 및 미션 달성 시<br/> 최대 20만원 보너스</p>
-                            <p>배민커넥트 추천인ID : BC564522</p>
-                        </div>
-                        <a href="https://baeminconnect.onelink.me/k618/3ccpicgp" target="_blank">
-                            <button class="baemin-button">배민커넥트 배달하러가기</button>
-                        </a>
-                    </div>
+                    <a href="https://eatscourier.app.link/hp7FxmyKaLb" target="_blank">
+                        <button class="coupang-button">쿠팡이츠 배달하러가기</button>
+                    </a>
                 </div>
+                <div class="delivery-item">
+                    <div class="referral-id">
+                        <p>배민커넥트 추천인ID 입력 및 미션 달성 시<br/> 최대 20만원 보너스</p>
+                        <p>배민커넥트 추천인ID : BC564522</p>
+                    </div>
+                    <a href="https://baeminconnect.onelink.me/k618/3ccpicgp" target="_blank">
+                        <button class="baemin-button">배민커넥트 배달하러가기</button>
+                    </a>
+                </div>
+            </div>
 
                 <div class="hashtags">
                     <p>#쿠팡이츠배달파트너 #배민커넥트</p>
@@ -334,7 +358,7 @@
         </main>
 
         <div class="banner-container right-banner">
-            <iframe src="https://ads-partners.coupang.com/widgets.html?id=791674&template=carousel&trackingCode=AF0820677&subId=&width=100&height=600&tsource=" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+            <iframe src="https://ads-partners.coupang.com/widgets.html?id=791674&template=carousel&trackingCode=AF0820677&subId=&width=100&height=100&tsource=" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
         </div>
     </div>
 
