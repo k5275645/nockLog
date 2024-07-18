@@ -201,7 +201,7 @@
         }
         @media (min-width: 1200px) {
             .main-container {
-                align-items: stretch;
+                align-items: flex-start;
             }
             .banner-container {
                 position: sticky;
@@ -219,14 +219,18 @@
                 flex-direction: column;
                 align-items: center;
             }
-            .banner-container {
-                order: 3;
-                max-width: 100%;
-                height: auto;
+            .banner-container.left-banner {
+                order: 1;
             }
             main {
-                order: 1;
+                order: 2;
+            }
+            .banner-container.right-banner {
+                order: 3;
+            }
+            .banner-container {
                 max-width: 100%;
+                height: auto;
             }
             .banner-container iframe {
                 width: 100%;
@@ -483,6 +487,23 @@
         
         const container = document.getElementById('threejs-container');
         
+        // Create octopus-like shape
+        const bodyGeometry = new THREE.SphereGeometry(1, 32, 32);
+        const bodyMaterial = new THREE.MeshBasicMaterial({ color: 0xFF6347, wireframe: true });
+        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+        scene.add(body);
+        
+        // Create tentacles
+        const tentacleMaterial = new THREE.MeshBasicMaterial({ color: 0xFF6347, wireframe: true });
+        for (let i = 0; i < 8; i++) {
+            const tentacleGeometry = new THREE.CylinderGeometry(0.1, 0.05, 2, 8);
+            const tentacle = new THREE.Mesh(tentacleGeometry, tentacleMaterial);
+            tentacle.position.y = -1;
+            tentacle.rotation.x = Math.PI / 4;
+            tentacle.rotation.y = (i / 8) * Math.PI * 2;
+            body.add(tentacle);
+        }
+        
         function resizeRenderer() {
             const width = container.clientWidth;
             const height = container.clientHeight;
@@ -501,23 +522,6 @@
         // Center the renderer in the container
         renderer.domElement.style.display = 'block';
         renderer.domElement.style.margin = 'auto';
-        
-        // Create octopus-like shape
-        const bodyGeometry = new THREE.SphereGeometry(1, 32, 32);
-        const bodyMaterial = new THREE.MeshBasicMaterial({ color: 0xFF6347, wireframe: true });
-        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
-        scene.add(body);
-        
-        // Create tentacles
-        const tentacleMaterial = new THREE.MeshBasicMaterial({ color: 0xFF6347, wireframe: true });
-        for (let i = 0; i < 8; i++) {
-            const tentacleGeometry = new THREE.CylinderGeometry(0.1, 0.05, 2, 8);
-            const tentacle = new THREE.Mesh(tentacleGeometry, tentacleMaterial);
-            tentacle.position.y = -1;
-            tentacle.rotation.x = Math.PI / 4;
-            tentacle.rotation.y = (i / 8) * Math.PI * 2;
-            body.add(tentacle);
-        }
         
         camera.position.z = 5;
         
