@@ -6,41 +6,41 @@
     <title>낙지</title>
     <style>
         :root {
-            --primary-color: #4a90e2;
-            --secondary-color: #5ca1e6;
-            --background-color: #ecf0f1;
-            --text-color: #2c3e50;
+            --text-color: #ffffff;
             --accent-color: #3498db;
             --baemin-color: #48D1CC;
             --coupang-color: #FF6F61;
             --naver-color: #03c75a;
-            --google-color: #ffffff;
+            --google-color: #4285F4;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: var(--text-color);
-            background-color: var(--background-color);
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
+        #backgroundCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
         header, footer {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
             position: fixed;
             width: 100%;
             z-index: 1000;
             padding: 0.5rem 0;
         }
-        header {
-            top: 0;
-        }
-        footer {
-            bottom: 0;
-        }
+        header { top: 0; }
+        footer { bottom: 0; }
         nav ul, .footer-content {
             display: flex;
             justify-content: space-between;
@@ -57,26 +57,20 @@
             white-space: nowrap;
         }
         nav ul li a, .footer-content a {
-            color: white;
+            color: var(--text-color);
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s ease;
             padding: 5px 10px;
             border-radius: 5px;
         }
-        .naver-link {
-            background-color: rgba(3, 199, 90, 0.6);
-        }
-        .google-link {
+        .naver-link { background-color: rgba(3, 199, 90, 0.6); }
+        .google-link { 
             background-color: rgba(255, 255, 255, 0.6);
-            color: #4285F4;
+            color: var(--google-color);
         }
-        .naver-link:hover, .naver-link:focus {
-            background-color: rgba(3, 199, 90, 0.8);
-        }
-        .google-link:hover, .google-link:focus {
-            background-color: rgba(255, 255, 255, 0.8);
-        }
+        .naver-link:hover, .naver-link:focus { background-color: rgba(3, 199, 90, 0.8); }
+        .google-link:hover, .google-link:focus { background-color: rgba(255, 255, 255, 0.8); }
         nav ul li a:not(.naver-link):not(.google-link):hover,
         nav ul li a:not(.naver-link):not(.google-link):focus,
         .footer-content a:not(.naver-link):not(.google-link):hover,
@@ -96,26 +90,21 @@
             flex: 0 0 10px;
             margin-bottom: 20px;
         }
-        .left-banner {
-            margin-right: 20px;
-        }
-        .right-banner {
-            margin-left: 20px;
-        }
+        .left-banner { margin-right: 20px; }
+        .right-banner { margin-left: 20px; }
         main {
             flex: 1;
             min-width: 300px;
         }
         section {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
             margin-bottom: 20px;
             padding: 15px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        .search-widget {
-            margin-bottom: 15px;
-        }
+        .search-widget { margin-bottom: 15px; }
         .content-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -153,12 +142,8 @@
             border-radius: 5px;
             margin-top: 10px;
         }
-        .coupang-button {
-            background-color: var(--coupang-color);
-        }
-        .baemin-button {
-            background-color: var(--baemin-color);
-        }
+        .coupang-button { background-color: var(--coupang-color); }
+        .baemin-button { background-color: var(--baemin-color); }
         .watermelon-image {
             display: block;
             max-width: 100%;
@@ -198,16 +183,12 @@
                 width: 100%;
                 max-width: 200px;
             }
-            nav ul, .footer-content {
-                justify-content: space-around;
-            }
+            nav ul, .footer-content { justify-content: space-around; }
             nav ul li, .footer-content a {
                 font-size: 0.8em;
                 padding: 5px;
             }
-            .footer-content a:nth-child(2) {
-                font-size: 0.7em;
-            }
+            .footer-content a:nth-child(2) { font-size: 0.7em; }
         }
         @media (min-width: 769px) {
             .main-container {
@@ -230,42 +211,8 @@
             .content-container {
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
-            .iframe-item {
-                max-width: 200px;
-            }
-            .watermelon-image {
-                max-width: 50%;
-            }
-        }
-        #visitor-counter {
-            background-color: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        #visitor-counter table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        #visitor-counter th, #visitor-counter td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        #visitor-counter th {
-            background-color: #f2f2f2;
-        }
-        #backgroundCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+            .iframe-item { max-width: 200px; }
+            .watermelon-image { max-width: 50%; }
         }
     </style>
 </head>
@@ -287,15 +234,6 @@
         </div>
 
         <main role="main">
-            <section id="visitor-counter">
-                <h3>방문횟수</h3>
-                <table id="visitor-table">
-                    <tr>
-                        <th>날짜</th>
-                        <th>방문횟수</th>
-                    </tr>
-                </table>
-            </section>
             <section id="home" class="section">
                 <div class="search-widget">
                     <iframe src="https://coupa.ng/cfO0dP" width="100%" height="75" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
@@ -334,7 +272,7 @@
                     </div>
                 </div>
 
-                <img src="images/wide_world.png" alt="Watermelon Person" class="watermelon-image">
+                <img src="images/cozy_dog.png" alt="Watermelon Person" class="watermelon-image">
                 
                 <p class="disclaimer">낙지의 github page 입니다.</p>
                 <p class="disclaimer">나무가 사라져간 산길 주인 없는 바다<br/>그래도 좋지아니한가 내 마음대로 되는 세상<br/>밤이 오면 싸워왔던 기억<br/>일기를 쓸만한 노트와 연필이 생기지 않았나<br/>내 마음대로 그린 세상우린 노래해 더 나아질거야<br/>우린 추억해 부질없이 지난날들<br/>바보같이 지난날들<br/>그래도 너는 좋지아니한가</p>
@@ -382,11 +320,14 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var homeButton = document.getElementById('home-button');
-            var homeSection = document.getElementById('home');
-            var naverLink = document.getElementById('naverLink');
-            var naverLinkFooter = document.getElementById('naverLinkFooter');
-            
+            const homeButton = document.getElementById('home-button');
+            const homeSection = document.getElementById('home');
+            const naverLink = document.getElementById('naverLink');
+            const naverLinkFooter = document.getElementById('naverLinkFooter');
+            const canvas = document.getElementById('backgroundCanvas');
+            const ctx = canvas.getContext('2d');
+            let particlesArray = [];
+
             function scrollToHome(e) {
                 e.preventDefault();
                 homeSection.scrollIntoView({ behavior: 'smooth' });
@@ -394,82 +335,18 @@
             
             homeButton.addEventListener('click', scrollToHome);
 
-            // 모바일 기기 감지 함수
             function isMobile() {
                 return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             }
 
-            // 네이버 링크 업데이트 함수
             function updateNaverLinks() {
-                var naverUrl = isMobile() ? "https://m.naver.com" : "https://www.naver.com";
+                const naverUrl = isMobile() ? "https://m.naver.com" : "https://www.naver.com";
                 naverLink.href = naverUrl;
                 naverLinkFooter.href = naverUrl;
             }
 
-            // 페이지 로드 시 네이버 링크 업데이트
             updateNaverLinks();
-
-            // 화면 크기 변경 시 네이버 링크 업데이트 (옵션)
             window.addEventListener('resize', updateNaverLinks);
-
-            // 방문자 수 카운터 기능
-            function updateVisitorCount() {
-                let today = new Date();
-                let visitorData = JSON.parse(localStorage.getItem('visitorData')) || {};
-
-                // 오늘 날짜의 키 생성 (예: "2023-07-18")
-                let dateKey = today.toISOString().split('T')[0];
-
-                // 오늘 날짜가 없으면 초기화
-                if (!visitorData[dateKey]) {
-                    visitorData[dateKey] = 0;
-                }
-
-                // 방문자 수 증가
-                visitorData[dateKey]++;
-
-                // 7일 이전의 데이터 삭제
-                let oneWeekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
-                for (let date in visitorData) {
-                    if (new Date(date) < oneWeekAgo) {
-                        delete visitorData[date];
-                    }
-                }
-
-                // localStorage에 저장
-                localStorage.setItem('visitorData', JSON.stringify(visitorData));
-
-                // 테이블 업데이트
-                updateVisitorTable(visitorData);
-            }
-
-            function updateVisitorTable(visitorData) {
-                let table = document.getElementById('visitor-table');
-                
-                // 헤더 행을 제외한 기존 행 삭제
-                while (table.rows.length > 1) {
-                    table.deleteRow(1);
-                }
-
-                // 날짜 순으로 정렬
-                let sortedDates = Object.keys(visitorData).sort().reverse();
-
-                for (let date of sortedDates) {
-                    let row = table.insertRow(-1);
-                    let cellDate = row.insertCell(0);
-                    let cellCount = row.insertCell(1);
-                    
-                    cellDate.textContent = date;
-                    cellCount.textContent = visitorData[date];
-                }
-            }
-
-            updateVisitorCount();
-
-            // Interactive Background
-            const canvas = document.getElementById('backgroundCanvas');
-            const ctx = canvas.getContext('2d');
-            let particlesArray = [];
 
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -489,11 +366,8 @@
                 }
                 draw() {
                     ctx.fillStyle = 'rgba(255,255,255,0.8)';
-                    ctx.strokeStyle = 'rgba(255,255,255,0.8)';
-                    ctx.lineWidth = 2;
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.closePath();
                     ctx.fill();
                 }
             }
@@ -510,10 +384,11 @@
             }
 
             function createParticle(e) {
-                const xPos = e.x;
-                const yPos = e.y;
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
                 for (let i = 0; i < 5; i++) {
-                    particlesArray.push(new Particle(xPos, yPos));
+                    particlesArray.push(new Particle(x, y));
                 }
             }
 
@@ -523,7 +398,7 @@
                 requestAnimationFrame(animateParticles);
             }
 
-            window.addEventListener('mousemove', createParticle);
+            canvas.addEventListener('mousemove', createParticle);
             window.addEventListener('resize', function() {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
