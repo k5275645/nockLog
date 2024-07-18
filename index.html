@@ -358,145 +358,154 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 기존 JavaScript 코드 유지
-            
-            // Interactive Background 코드 추가
-            const canvas = document.getElementById('backgroundCanvas');
-            const ctx = canvas.getContext('2d');
-            let particlesArray = [];
-
+    document.addEventListener('DOMContentLoaded', function() {
+        // Background canvas setup
+        const canvas = document.getElementById('backgroundCanvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+    
+        function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-
-            class Particle {
-                constructor(x, y) {
-                    this.x = x;
-                    this.y = y;
-                    this.size = Math.random() * 5 + 1;
-                    this.speedX = Math.random() * 3 - 1.5;
-                    this.speedY = Math.random() * 3 - 1.5;
-                }
-                update() {
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-                    if (this.size > 0.2) this.size -= 0.1;
-                }
-                draw() {
-                    ctx.fillStyle = 'rgba(74, 144, 226, 0.5)';
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fill();
-                }
+        }
+        resizeCanvas();
+    
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 5 + 1;
+                this.speedX = Math.random() * 3 - 1.5;
+                this.speedY = Math.random() * 3 - 1.5;
             }
-
-            function handleParticles() {
-                for (let i = 0; i < particlesArray.length; i++) {
-                    particlesArray[i].update();
-                    particlesArray[i].draw();
-                    if (particlesArray[i].size <= 0.3) {
-                        particlesArray.splice(i, 1);
-                        i--;
-                    }
-                }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.1;
             }
-
-            function createParticle(e) {
-                const rect = canvas.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                for (let i = 0; i < 5; i++) {
-                    particlesArray.push(new Particle(x, y));
+            draw() {
+                ctx.fillStyle = 'rgba(74, 144, 226, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+    
+        function handleParticles() {
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+                if (particlesArray[i].size <= 0.3) {
+                    particlesArray.splice(i, 1);
+                    i--;
                 }
             }
-
-            function animateParticles() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                handleParticles();
-                requestAnimationFrame(animateParticles);
+        }
+    
+        function createParticle(e) {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            for (let i = 0; i < 5; i++) {
+                particlesArray.push(new Particle(x, y));
             }
-
-            window.addEventListener('mousemove', createParticle);
-            window.addEventListener('resize', function() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            });
-
-            animateParticles();
-
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('themeToggle');
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-theme');
-            });
-
-            // Dynamic content loading
-            function handleIntersection(entries, observer) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }
-
-            const observer = new IntersectionObserver(handleIntersection, {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            });
-
-            document.querySelectorAll('.content-item').forEach(item => {
-                observer.observe(item);
-            });
-
-            // 3D element using Three.js
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ alpha: true }); // alpha: true for transparent background
-            
-            const container = document.getElementById('threejs-container');
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            container.appendChild(renderer.domElement);
-            
-            // Center the renderer in the container
-            renderer.domElement.style.display = 'block';
-            renderer.domElement.style.margin = 'auto';
-            
-            // Create octopus-like shape
-            const bodyGeometry = new THREE.SphereGeometry(1, 32, 32);
-            const bodyMaterial = new THREE.MeshBasicMaterial({ color: 0xFF6347, wireframe: true });
-            const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
-            scene.add(body);
-            
-            // Create tentacles
-            const tentacleMaterial = new THREE.MeshBasicMaterial({ color: 0xFF6347, wireframe: true });
-            for (let i = 0; i < 8; i++) {
-                const tentacleGeometry = new THREE.CylinderGeometry(0.1, 0.05, 2, 8);
-                const tentacle = new THREE.Mesh(tentacleGeometry, tentacleMaterial);
-                tentacle.position.y = -1;
-                tentacle.rotation.x = Math.PI / 4;
-                tentacle.rotation.y = (i / 8) * Math.PI * 2;
-                body.add(tentacle);
-            }
-            
-            camera.position.z = 5;
-            
-            function animate() {
-                requestAnimationFrame(animate);
-                body.rotation.x += 0.01;
-                body.rotation.y += 0.01;
-                renderer.render(scene, camera);
-            }
-            animate();
-            
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                camera.aspect = container.clientWidth / container.clientHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(container.clientWidth, container.clientHeight);
-            });
+        }
+    
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            handleParticles();
+            requestAnimationFrame(animateParticles);
+        }
+    
+        window.addEventListener('mousemove', createParticle);
+        animateParticles();
+    
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
         });
+    
+        // Dynamic content loading
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        });
+    
+        document.querySelectorAll('.content-item').forEach(item => {
+            observer.observe(item);
+        });
+    
+        // 3D element using Three.js
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        
+        const container = document.getElementById('threejs-container');
+        
+        function resizeRenderer() {
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+        }
+        
+        resizeRenderer();
+        container.appendChild(renderer.domElement);
+        
+        // Center the renderer in the container
+        renderer.domElement.style.display = 'block';
+        renderer.domElement.style.margin = 'auto';
+        
+        // Create octopus-like shape
+        const bodyGeometry = new THREE.SphereGeometry(1, 32, 32);
+        const bodyMaterial = new THREE.MeshBasicMaterial({ color: 0xFF6347, wireframe: true });
+        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+        scene.add(body);
+        
+        // Create tentacles
+        const tentacleMaterial = new THREE.MeshBasicMaterial({ color: 0xFF6347, wireframe: true });
+        for (let i = 0; i < 8; i++) {
+            const tentacleGeometry = new THREE.CylinderGeometry(0.1, 0.05, 2, 8);
+            const tentacle = new THREE.Mesh(tentacleGeometry, tentacleMaterial);
+            tentacle.position.y = -1;
+            tentacle.rotation.x = Math.PI / 4;
+            tentacle.rotation.y = (i / 8) * Math.PI * 2;
+            body.add(tentacle);
+        }
+        
+        camera.position.z = 5;
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            body.rotation.x += 0.01;
+            body.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+        
+        // Improved resize event handler
+        let resizeTimeout;
+        function handleResize() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                resizeCanvas();
+                resizeRenderer();
+            }, 250);
+        }
+        
+        window.addEventListener('resize', handleResize);
+    
+        // Initial resize call
+        handleResize();
+    });
     </script>
 </body>
 </html>
