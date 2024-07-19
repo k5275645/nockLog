@@ -29,6 +29,18 @@
         --section-background: #2c3e50;
     }
     
+    @media (prefers-color-scheme: dark) {
+        body.system-theme {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --background-color: #1a1a1a;
+            --text-color: #ecf0f1;
+            --accent-color: #3498db;
+            --button-text-color: #1a1a1a;
+            --section-background: #2c3e50;
+        }
+    }
+    
     * {
         box-sizing: border-box;
         margin: 0;
@@ -128,6 +140,15 @@
         border: none;
         cursor: pointer;
         margin-left: 20px;
+    }
+    
+    #themeSelect {
+        margin-left: 10px;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: var(--accent-color);
+        color: var(--button-text-color);
+        border: none;
     }
     
     .main-container {
@@ -349,15 +370,20 @@
 <body>
     <canvas id="backgroundCanvas"></canvas>
     <header>
-        <nav>
-            <ul>
-                <li><a href="https://www.naver.com" target="_blank" class="naver-link" id="naverLink">네이버</a></li>
-                <li><a href="#home" id="home-button">홈</a></li>
-                <li><a href="https://www.google.com" target="_blank" class="google-link">구글</a></li>
-            </ul>
-            <button class="theme-toggle" id="themeToggle">테마 전환</button>
-        </nav>
-    </header>
+    <nav>
+        <ul>
+            <li><a href="https://www.naver.com" target="_blank" class="naver-link" id="naverLink">네이버</a></li>
+            <li><a href="#home" id="home-button">홈</a></li>
+            <li><a href="https://www.google.com" target="_blank" class="google-link">구글</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle">테마 전환</button>
+        <select id="themeSelect">
+            <option value="system">시스템 테마</option>
+            <option value="light">라이트 테마</option>
+            <option value="dark">다크 테마</option>
+        </select>
+    </nav>
+</header>
 
     <div class="main-container">
         <div class="banner-container left-banner">
@@ -433,78 +459,79 @@
         </nav>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            setupBackgroundCanvas();
-            setupThreeJS();
-            setupEventListeners();
-            lazyLoadImages();
-            handleResize();
-        });
-        
-        function setupBackgroundCanvas() {
-            const canvas = document.getElementById('backgroundCanvas');
-            const ctx = canvas.getContext('2d');
-            let particlesArray = [];
-        
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-        
-            class Particle {
-                constructor(x, y) {
-                    this.x = x;
-                    this.y = y;
-                    this.size = Math.random() * 5 + 1;
-                    this.speedX = Math.random() * 3 - 1.5;
-                    this.speedY = Math.random() * 3 - 1.5;
-                }
-                update() {
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-                    if (this.size > 0.2) this.size -= 0.1;
-                }
-                draw() {
-                    ctx.fillStyle = 'rgba(74, 144, 226, 0.5)';
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-        
-            function handleParticles() {
-                for (let i = 0; i < particlesArray.length; i++) {
-                    particlesArray[i].update();
-                    particlesArray[i].draw();
-                    if (particlesArray[i].size <= 0.3) {
-                        particlesArray.splice(i, 1);
-                        i--;
-                    }
-                }
-            }
-        
-            function createParticle(e) {
-                const rect = canvas.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                for (let i = 0; i < 5; i++) {
-                    particlesArray.push(new Particle(x, y));
-                }
-            }
-        
-            function animateParticles() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                handleParticles();
-                requestAnimationFrame(animateParticles);
-            }
-        
-            resizeCanvas();
-            window.addEventListener('mousemove', createParticle);
-            animateParticles();
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setupBackgroundCanvas();
+        setupThreeJS();
+        setupEventListeners();
+        lazyLoadImages();
+        handleResize();
+        setInitialTheme();
+    });
+    
+    function setupBackgroundCanvas() {
+        const canvas = document.getElementById('backgroundCanvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+    
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
-        
-        function setupThreeJS() {
+    
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 5 + 1;
+                this.speedX = Math.random() * 3 - 1.5;
+                this.speedY = Math.random() * 3 - 1.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(74, 144, 226, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+    
+        function handleParticles() {
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+                if (particlesArray[i].size <= 0.3) {
+                    particlesArray.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+    
+        function createParticle(e) {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            for (let i = 0; i < 5; i++) {
+                particlesArray.push(new Particle(x, y));
+            }
+        }
+    
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            handleParticles();
+            requestAnimationFrame(animateParticles);
+        }
+    
+        resizeCanvas();
+        window.addEventListener('mousemove', createParticle);
+        animateParticles();
+    }
+    
+    function setupThreeJS() {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -560,82 +587,120 @@
         
         animate();
     }
+    
+    function setupEventListeners() {
+        const themeToggle = document.getElementById('themeToggle');
+        const themeSelect = document.getElementById('themeSelect');
         
-        function setupEventListeners() {
-            const themeToggle = document.getElementById('themeToggle');
-            themeToggle.addEventListener('click', toggleTheme);
+        themeToggle.addEventListener('click', toggleTheme);
+        themeSelect.addEventListener('change', handleThemeChange);
+
+        window.addEventListener('resize', handleResize);
         
-            window.addEventListener('resize', handleResize);
+        // 시스템 테마 변경 감지
+        window.matchMedia('(prefers-color-scheme: dark)').addListener(handleSystemThemeChange);
+    }
+    
+    function setInitialTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.className = savedTheme;
+            document.getElementById('themeSelect').value = savedTheme.includes('dark') ? 'dark' : 'light';
+        } else {
+            document.body.className = 'system-theme';
+            document.getElementById('themeSelect').value = 'system';
         }
-        
-        function toggleTheme() {
-            document.body.classList.toggle('dark-theme');
-            const themeToggle = document.getElementById('themeToggle');
-            themeToggle.textContent = document.body.classList.contains('dark-theme') ? '라이트 테마' : '다크 테마';
+    }
+
+    function toggleTheme() {
+        if (document.body.classList.contains('dark-theme')) {
+            document.body.className = 'light-theme';
+            document.getElementById('themeSelect').value = 'light';
+        } else {
+            document.body.className = 'dark-theme';
+            document.getElementById('themeSelect').value = 'dark';
         }
-        
-        function lazyLoadImages() {
-            const images = document.querySelectorAll('img[data-src]');
-            const options = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-        
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-                        imageObserver.unobserve(img);
-                    }
-                });
-            }, options);
-        
-            images.forEach(img => imageObserver.observe(img));
+        localStorage.setItem('theme', document.body.className);
+    }
+
+    function handleThemeChange(event) {
+        const selectedTheme = event.target.value;
+        if (selectedTheme === 'system') {
+            document.body.className = 'system-theme';
+            localStorage.removeItem('theme');
+        } else {
+            document.body.className = selectedTheme + '-theme';
+            localStorage.setItem('theme', document.body.className);
         }
-        
-        function adjustBannerHeights() {
-            const banners = document.querySelectorAll('.banner-container');
-            const mainContent = document.querySelector('main');
-            if (window.innerWidth >= 1200) {
-                const mainHeight = mainContent.offsetHeight;
-                banners.forEach(banner => {
-                    banner.style.height = `${mainHeight}px`;
-                    banner.style.maxWidth = '300px';
-                });
-            } else {
-                banners.forEach(banner => {
-                    banner.style.height = '150px';
-                    banner.style.maxWidth = '100%';
-                });
-            }
-            mainContent.style.maxWidth = window.innerWidth >= 1200 ? '800px' : '100%';
+    }
+
+    function handleSystemThemeChange(e) {
+        if (document.body.classList.contains('system-theme')) {
+            document.body.className = e.matches ? 'dark-theme' : 'light-theme';
         }
-        
-        function handleResize() {
-            adjustBannerHeights();
-            // 여기에 필요한 다른 리사이즈 관련 함수들을 추가할 수 있습니다.
-        }
-        
-        // Dynamic content loading
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
+    }
+    
+    function lazyLoadImages() {
+        const images = document.querySelectorAll('img[data-src]');
+        const options = {
             root: null,
             rootMargin: '0px',
             threshold: 0.1
+        };
+    
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    imageObserver.unobserve(img);
+                }
+            });
+        }, options);
+    
+        images.forEach(img => imageObserver.observe(img));
+    }
+    
+    function adjustBannerHeights() {
+        const banners = document.querySelectorAll('.banner-container');
+        const mainContent = document.querySelector('main');
+        if (window.innerWidth >= 1200) {
+            const mainHeight = mainContent.offsetHeight;
+            banners.forEach(banner => {
+                banner.style.height = `${mainHeight}px`;
+                banner.style.maxWidth = '300px';
+            });
+        } else {
+            banners.forEach(banner => {
+                banner.style.height = '150px';
+                banner.style.maxWidth = '100%';
+            });
+        }
+        mainContent.style.maxWidth = window.innerWidth >= 1200 ? '800px' : '100%';
+    }
+    
+    function handleResize() {
+        adjustBannerHeights();
+    }
+    
+    // Dynamic content loading
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
         });
-        
-        document.querySelectorAll('.content-item').forEach(item => {
-            observer.observe(item);
-        });
-    </script>
+    }, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    });
+    
+    document.querySelectorAll('.content-item').forEach(item => {
+        observer.observe(item);
+    });
+</script>
 </body>
 </html>
