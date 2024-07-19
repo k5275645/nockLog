@@ -247,6 +247,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: height 0.3s ease;
     }
     
     .content-item {
@@ -320,6 +321,9 @@
         }
         .delivery-item {
             flex: 1 1 100%;
+        }
+        #threejs-container {
+            height: 100px;
         }
     }
     
@@ -516,6 +520,7 @@
             }
             
             resizeRenderer();
+            window.addEventListener('resize', resizeRenderer);
             container.appendChild(renderer.domElement);
             
             // Particle system setup
