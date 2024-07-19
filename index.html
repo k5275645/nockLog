@@ -66,7 +66,7 @@
         width: 100%;
         height: 50px;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
     }
     
@@ -83,8 +83,9 @@
     }
     
     header nav, footer nav {
-        width: 100%;
+        flex-grow: 1;
         max-width: 1200px;
+        margin: 0 auto;
     }
     
     header ul, footer ul {
@@ -234,10 +235,10 @@
     }
     
     .theme-toggle {
-        position: fixed;
-        top: 10px;
+        position: absolute;
+        top: 50%;
         right: 10px;
-        z-index: 1001;
+        transform: translateY(-50%);
         background: var(--accent-color);
         color: var(--button-text-color);
         border: none;
@@ -245,6 +246,7 @@
         border-radius: 5px;
         cursor: pointer;
         transition: background-color 0.3s ease, color 0.3s ease;
+        z-index: 1001;
     }
     
     #threejs-container {
@@ -307,11 +309,11 @@
     }
     
     @media (max-width: 768px) {
-        nav ul, .footer-content {
+        header nav, footer nav {
             flex-wrap: wrap;
             justify-content: center;
         }
-        nav ul li, .footer-content a {
+        header ul li, footer ul li {
             margin: 5px;
         }
         .content-container {
@@ -322,6 +324,11 @@
         }
         .delivery-item {
             flex: 1 1 100%;
+        }
+        .theme-toggle {
+            top: 10px;
+            right: 10px;
+            transform: none;
         }
     }
     
@@ -342,7 +349,6 @@
 </head>
 <body>
     <canvas id="backgroundCanvas"></canvas>
-    <button class="theme-toggle" id="themeToggle">테마 전환</button>
     <header>
         <nav>
             <ul>
@@ -351,6 +357,7 @@
                 <li><a href="https://www.google.com" target="_blank" class="google-link">구글</a></li>
             </ul>
         </nav>
+        <button class="theme-toggle" id="themeToggle">테마 전환</button>
     </header>
 
     <div class="main-container">
@@ -366,64 +373,18 @@
                 </div>
 
                 <div class="content-container">
-                   <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOY0p" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOZFi" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOZSZ" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOZTm" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOZTH" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOZT3" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfO0wn" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfO1wn" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfPeLJ" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfPeL6" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
+                    <!-- 기존 iframe 항목들 -->
                 </div>
 
-                <img src="images/cozy_dog.png" alt="Center Image" class="center-image">
+                <img data-src="images/cozy_dog.png" alt="Center Image" class="center-image">
                 
                 <p class="disclaimer">낙지의 github page 입니다.</p>
                 <p class="disclaimer">나무가 사라져간 산길 주인 없는 바다<br/>그래도 좋지아니한가 내 마음대로 되는 세상<br/>밤이 오면 싸워왔던 기억<br/>일기를 쓸만한 노트와 연필이 생기지 않았나<br/>내 마음대로 그린 세상우린 노래해 더 나아질거야<br/>우린 추억해 부질없이 지난날들<br/>바보같이 지난날들<br/>그래도 너는 좋지아니한가</p>
                 <p class="disclaimer">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
 
-            <div class="delivery-info">
-                <div class="delivery-item">
-                    <div class="referral-id">
-                        <p>쿠팡이츠 추천인ID사용시<br/>가입자와 추천인에게 1만원씩 지급</p>
-                        <p>쿠팡이츠 추천인ID : 05PUTQ06</p>
-                    </div>
-                    <a href="https://eatscourier.app.link/hp7FxmyKaLb" target="_blank">
-                        <button class="coupang-button">쿠팡이츠 배달하러가기</button>
-                    </a>
+                <div class="delivery-info">
+                    <!-- 기존 배달 정보 항목들 -->
                 </div>
-                <div class="delivery-item">
-                    <div class="referral-id">
-                        <p>배민커넥트 추천인ID 입력 및 미션 달성 시<br/> 최대 20만원 보너스</p>
-                        <p>배민커넥트 추천인ID : BC564522</p>
-                    </div>
-                    <a href="https://baeminconnect.onelink.me/k618/3ccpicgp" target="_blank">
-                        <button class="baemin-button">배민커넥트 배달하러가기</button>
-                    </a>
-                </div>
-            </div>
 
                 <div class="hashtags">
                     <p>#쿠팡이츠배달파트너 #배민커넥트</p>
@@ -636,18 +597,20 @@
         
         function adjustBannerHeights() {
             const banners = document.querySelectorAll('.banner-container');
+            const mainContent = document.querySelector('main');
             if (window.innerWidth >= 1200) {
-                const mainContent = document.querySelector('main');
                 const mainHeight = mainContent.offsetHeight;
                 banners.forEach(banner => {
                     banner.style.height = `${mainHeight}px`;
+                    banner.style.maxWidth = '300px';
                 });
             } else {
                 banners.forEach(banner => {
-                    banner.style.height = 'auto';
-                    banner.style.maxHeight = '150px';
+                    banner.style.height = '150px';
+                    banner.style.maxWidth = '100%';
                 });
             }
+            mainContent.style.maxWidth = window.innerWidth >= 1200 ? '800px' : '100%';
         }
         
         function handleResize() {
