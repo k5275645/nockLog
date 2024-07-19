@@ -84,20 +84,23 @@
     
     header nav, footer nav {
         display: flex;
+        justify-content: center;
         align-items: center;
-        justify-content: space-between;
         width: 100%;
     }
     
     header ul, footer ul {
         display: flex;
+        justify-content: center;
+        align-items: center;
         list-style-type: none;
         margin: 0;
         padding: 0;
+        flex-grow: 1;
     }
     
     header ul li, footer ul li {
-        margin: 0 5px;
+        margin: 0 10px;
     }
     
     header ul li a, footer ul li a, .theme-toggle {
@@ -124,6 +127,7 @@
         color: var(--button-text-color);
         border: none;
         cursor: pointer;
+        margin-left: 20px;
     }
     
     .main-container {
@@ -296,6 +300,14 @@
     }
     
     @media (max-width: 768px) {
+        header ul li, footer ul li {
+            margin: 0 5px;
+        }
+        
+        .theme-toggle {
+            margin-left: 10px;
+        }
+
         header ul li a, footer ul li a, .theme-toggle, .coupang-button, .baemin-button {
             font-size: 0.8em;
             padding: 4px 8px;
@@ -327,7 +339,6 @@
             grid-template-columns: repeat(2, 1fr);
         }
     }
-</style>
 </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
@@ -370,16 +381,7 @@
                         <iframe src="https://coupa.ng/cfOZTm" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
                     </div>
                     <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOZTH" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOZT3" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
                         <iframe src="https://coupa.ng/cfO0wn" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfO1wn" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
                     </div>
                     <div class="iframe-item">
                         <iframe src="https://coupa.ng/cfPeLJ" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
