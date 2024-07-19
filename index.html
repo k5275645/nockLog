@@ -85,6 +85,8 @@
     header nav, footer nav {
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        width: 100%;
     }
     
     header ul, footer ul {
@@ -95,16 +97,17 @@
     }
     
     header ul li, footer ul li {
-        margin: 0 10px;
+        margin: 0 5px;
     }
     
-    header ul li a, footer ul li a {
+    header ul li a, footer ul li a, .theme-toggle {
         color: white;
         text-decoration: none;
         font-weight: bold;
         transition: all 0.3s ease;
         padding: 5px 10px;
         border-radius: 5px;
+        font-size: 0.9em;
     }
     
     .naver-link {
@@ -116,9 +119,11 @@
         color: #4285F4;
     }
     
-    .naver-link:hover, .naver-link:focus,
-    .google-link:hover, .google-link:focus {
-        opacity: 0.8;
+    .theme-toggle {
+        background: var(--accent-color);
+        color: var(--button-text-color);
+        border: none;
+        cursor: pointer;
     }
     
     .main-container {
@@ -202,15 +207,16 @@
     }
     
     .coupang-button, .baemin-button {
-        width: 100%;
-        max-width: 200px;
-        height: 60px;
+        width: auto;
+        height: auto;
         color: white;
         border: none;
         cursor: pointer;
-        font-size: 1em;
+        font-size: 0.9em;
         border-radius: 5px;
-        margin-top: 10px;
+        padding: 5px 10px;
+        text-decoration: none;
+        display: inline-block;
     }
     
     .coupang-button {
@@ -228,17 +234,6 @@
         margin: 20px auto;
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    .theme-toggle {
-        background: var(--accent-color);
-        color: var(--button-text-color);
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        margin-left: 10px;
     }
     
     #threejs-container {
@@ -301,8 +296,9 @@
     }
     
     @media (max-width: 768px) {
-        header ul li:not(:first-child):not(:last-child) {
-            display: none;
+        header ul li a, footer ul li a, .theme-toggle, .coupang-button, .baemin-button {
+            font-size: 0.8em;
+            padding: 4px 8px;
         }
         .content-container {
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -316,6 +312,10 @@
     }
     
     @media (max-width: 480px) {
+        header ul li a, footer ul li a, .theme-toggle, .coupang-button, .baemin-button {
+            font-size: 0.7em;
+            padding: 3px 6px;
+        }
         .banner-container {
             max-height: 150px;
             overflow: hidden;
@@ -325,10 +325,6 @@
         }
         .content-container {
             grid-template-columns: repeat(2, 1fr);
-        }
-        .theme-toggle {
-            font-size: 0.8em;
-            padding: 3px 6px;
         }
     }
 </style>
@@ -344,8 +340,8 @@
                 <li><a href="#home" id="home-button">홈</a></li>
                 <li><a href="https://www.google.com" target="_blank" class="google-link">구글</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle">테마 전환</button>
         </nav>
-        <button class="theme-toggle" id="themeToggle">테마 전환</button>
     </header>
 
     <div class="main-container">
@@ -434,9 +430,8 @@
     <footer>
         <nav>
             <ul>
-                <li><a href="https://www.naver.com" target="_blank" class="naver-link" id="naverLinkFooter">네이버</a></li>
-                <li><a href="https://blog.naver.com/nocklog" target="_blank" rel="noopener noreferrer">낙지 블로그</a></li>
-                <li><a href="https://www.google.com" target="_blank" class="google-link">구글</a></li>
+                <li><a href="https://eatscourier.app.link/hp7FxmyKaLb" target="_blank" class="coupang-button">쿠팡이츠</a></li>
+                <li><a href="https://baeminconnect.onelink.me/k618/3ccpicgp" target="_blank" class="baemin-button">배민커넥트</a></li>
             </ul>
         </nav>
     </footer>
