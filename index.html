@@ -505,87 +505,61 @@
         }
         
         function setupThreeJS() {
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ alpha: true });
-            
-            const container = document.getElementById('threejs-container');
-            
-            function resizeRenderer() {
-                const width = container.clientWidth;
-                const height = container.clientHeight;
-                renderer.setSize(width, height);
-                camera.aspect = width / height;
-                camera.updateProjectionMatrix();
-            }
-            
-            resizeRenderer();
-            window.addEventListener('resize', resizeRenderer);
-            container.appendChild(renderer.domElement);
-            
-            // Particle system setup
-            const particlesCount = 1000;
-            const positions = new Float32Array(particlesCount * 3);
-            const colors = new Float32Array(particlesCount * 3);
-            
-            for (let i = 0; i < particlesCount * 3; i++) {
-                positions[i] = (Math.random() - 0.5) * 10;
-                colors[i] = Math.random();
-            }
-            
-            const geometry = new THREE.BufferGeometry();
-            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-            
-            const material = new THREE.PointsMaterial({
-                size: 0.1,
-                vertexColors: true,
-                blending: THREE.AdditiveBlending,
-                transparent: true
-            });
-            
-            const particles = new THREE.Points(geometry, material);
-            scene.add(particles);
-            
-            camera.position.z = 5;
-            
-            // Mouse interaction
-            let mouseX = 0;
-            let mouseY = 0;
-            
-            document.addEventListener('mousemove', (event) => {
-                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-            });
-            
-            // Animation loop
-            function animate() {
-                requestAnimationFrame(animate);
-            
-                particles.rotation.x += 0.001;
-                particles.rotation.y += 0.002;
-            
-                // Adjust particle movement based on mouse position
-                particles.rotation.x += mouseY * 0.05;
-                particles.rotation.y += mouseX * 0.05;
-            
-                const positions = particles.geometry.attributes.position.array;
-                for (let i = 0; i < positions.length; i += 3) {
-                    const x = positions[i];
-                    const y = positions[i + 1];
-                    const z = positions[i + 2];
-            
-                    positions[i] = x + Math.sin(Date.now() * 0.001 + x) * 0.01;
-                    positions[i + 1] = y + Math.cos(Date.now() * 0.002 + y) * 0.01;
-                    positions[i + 2] = z + Math.sin(Date.now() * 0.001 + z) * 0.01;
-                }
-                particles.geometry.attributes.position.needsUpdate = true;
-            
-                renderer.render(scene, camera);
-            }
-            
-            animate();
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        
+        const container = document.getElementById('threejs-container');
+        
+        function resizeRenderer() {
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
         }
+        
+        resizeRenderer();
+        window.addEventListener('resize', resizeRenderer);
+        container.appendChild(renderer.domElement);
+        
+        // 새로운 파도 효과 생성
+        const geometry = new THREE.PlaneGeometry(20, 20, 100, 100);
+        const material = new THREE.MeshBasicMaterial({
+            color: 0x4a90e2,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.5
+        });
+        const waves = new THREE.Mesh(geometry, material);
+        waves.rotation.x = -Math.PI / 2;
+        scene.add(waves);
+        
+        camera.position.z = 10;
+        camera.position.y = 5;
+        camera.lookAt(scene.position);
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            const time = Date.now() * 0.001;
+            const positions = waves.geometry.attributes.position;
+            
+            for (let i = 0; i < positions.count; i++) {
+                const x = positions.getX(i);
+                const y = positions.getY(i);
+                const amp = 0.5; // 파도의 높이
+                const freq = 0.5; // 파도의 빈도
+                const z = amp * Math.sin(x * freq + time) * Math.cos(y * freq + time);
+                positions.setZ(i, z);
+            }
+            positions.needsUpdate = true;
+            
+            renderer.render(scene, camera);
+        }
+        
+        animate();
+    }
         
         function setupEventListeners() {
             const themeToggle = document.getElementById('themeToggle');
