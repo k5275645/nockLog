@@ -402,7 +402,7 @@
     <header>
         <nav>
             <ul>
-                <li><a href="https://www.naver.com" target="_blank" class="naver-link" id="naverLink">네이버</a></li>
+                <li><a href="#" id="naverLink">네이버</a></li>
                 <li><a href="#home" id="home-button">홈</a></li>
                 <li><a href="https://www.google.com" target="_blank" class="google-link">구글</a></li>
             </ul>
@@ -430,12 +430,6 @@
                 <div class="content-container">
                    <div class="iframe-item">
                         <iframe src="https://coupa.ng/cfOY0p" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOZSZ" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
-                    </div>
-                    <div class="iframe-item">
-                        <iframe src="https://coupa.ng/cfOZTm" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
                     </div>
                     <div class="iframe-item">
                         <iframe src="https://coupa.ng/cfPeL6" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
@@ -488,6 +482,7 @@
         lazyLoadImages();
         handleResize();
         setInitialTheme();
+        setupNaverLink();
     });
     
     function setupBackgroundCanvas() {
@@ -717,6 +712,16 @@
         rootMargin: '0px',
         threshold: 0.1
     });
+
+    function setupNaverLink() {
+        const naverLink = document.getElementById('naverLink');
+        naverLink.addEventListener('click', function(e) {
+            e.preventDefault(); // 기본 동작 방지
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const naverUrl = isMobile ? 'https://m.naver.com' : 'https://www.naver.com';
+            window.open(naverUrl, '_blank');
+        });
+    }
     
     document.querySelectorAll('.content-item').forEach(item => {
         observer.observe(item);
