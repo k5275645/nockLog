@@ -67,13 +67,13 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 0 15px;
     }
     
     header {
         position: sticky;
         top: 0;
         z-index: 1000;
-        padding: 0 10px;
     }
     
     footer {
@@ -83,19 +83,15 @@
     }
     
     header nav, footer nav {
-        flex-grow: 1;
-        max-width: 1200px;
-        margin: 0 auto;
+        display: flex;
+        align-items: center;
     }
     
     header ul, footer ul {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
         list-style-type: none;
-        padding: 0;
         margin: 0;
-        width: 100%;
+        padding: 0;
     }
     
     header ul li, footer ul li {
@@ -235,11 +231,6 @@
     }
     
     .theme-toggle {
-        position: relative;
-        top: auto;
-        right: auto;
-        transform: none;
-        margin-left: 10px;
         background: var(--accent-color);
         color: var(--button-text-color);
         border: none;
@@ -247,7 +238,7 @@
         border-radius: 5px;
         cursor: pointer;
         transition: background-color 0.3s ease, color 0.3s ease;
-        z-index: 1001;
+        margin-left: 10px;
     }
     
     #threejs-container {
@@ -310,27 +301,9 @@
     }
     
     @media (max-width: 768px) {
-        header {
-            flex-wrap: wrap;
-            height: auto;
-            padding: 10px;
+        header ul li:not(:first-child):not(:last-child) {
+            display: none;
         }
-        
-        header nav {
-            order: 2;
-            width: 100%;
-            margin-top: 10px;
-        }
-        
-        header ul {
-            justify-content: center;
-        }
-        
-        .theme-toggle {
-            order: 1;
-            margin: 0 0 0 auto;
-        }
-        
         .content-container {
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
         }
@@ -353,13 +326,12 @@
         .content-container {
             grid-template-columns: repeat(2, 1fr);
         }
-        header ul {
-            flex-wrap: wrap;
-        }
-        header ul li {
-            margin: 5px;
+        .theme-toggle {
+            font-size: 0.8em;
+            padding: 3px 6px;
         }
     }
+</style>
 </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
