@@ -86,17 +86,7 @@
         position: sticky;
         top: 0;
         z-index: 1000;
-    }
-    
-    footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        padding: 0; /* 패딩 제거 */
-        height: 50px; /* 고정 높이 설정 */
-    }
+    }    
     
     header nav {
         display: flex;
@@ -119,7 +109,7 @@
         margin: 0 10px;
     }
     
-    header ul li a, .theme-toggle {
+    header ul li a {
         color: white;
         text-decoration: none;
         font-weight: bold;
@@ -127,6 +117,16 @@
         padding: 5px 10px;
         border-radius: 5px;
         font-size: 0.9em;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 0; /* 패딩 제거 */
+        height: 50px; /* 고정 높이 설정 */
     }
 
     footer nav {
@@ -167,10 +167,6 @@
     .google-link {
         background-color: rgba(255, 255, 255, 0.6);
         color: #4285F4;
-    }
-    
-    .theme-toggle {
-        display: none;
     }
     
     #themeSelect {
@@ -351,12 +347,8 @@
         header ul li{
             margin: 0 5px;
         }
-        
-        .theme-toggle {
-            display: none;
-        }
 
-        header ul li a, .theme-toggle, .coupang-button, .baemin-button {
+        header ul li a, .coupang-button, .baemin-button {
             font-size: 0.8em;
             padding: 4px 8px;
         }
@@ -375,7 +367,7 @@
     }
     
     @media (max-width: 480px) {
-        header ul li a, .theme-toggle, .coupang-button, .baemin-button {
+        header ul li a, .coupang-button, .baemin-button {
             font-size: 0.7em;
             padding: 3px 6px;
         }
