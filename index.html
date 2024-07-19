@@ -171,19 +171,20 @@
         font-size: 1em;
         border-radius: 10px;
         text-decoration: none;
-        color: var(--button-text-color);
+        color: white !important; /* 글씨 색상을 흰색으로 강제 지정 */
         margin: 0 5px; /* 좌우 마진 추가 */
         padding: 0 10px; /* 좌우 패딩 추가 */
         box-sizing: border-box;
     }
     
     .naver-link {
-        background-color: rgba(3, 199, 90, 0.6);
+        background-color: var(--naver-color);
+        color: white !important; /* 글씨 색상을 흰색으로 강제 지정 */
     }
-    
+
     .google-link {
-        background-color: rgba(255, 255, 255, 0.6);
-        color: #4285F4;
+        background-color: var(--google-color);
+        color: #4285F4 !important; /* Google 색상 유지 */
     }
     
     #themeSelect {
@@ -277,6 +278,7 @@
     }
     
     .coupang-button, .baemin-button {        
+        color: white !important; /* 글씨 색상을 흰색으로 강제 지정 */
         font-size: 1em;
         border-radius: 5;
     }
@@ -412,7 +414,7 @@
     <header>
         <nav>
             <ul>
-                <li><a href="#" id="naverLink">네이버</a></li>
+                <li><a href="#" class="naver-link" id="naverLink">네이버</a></li>
                 <li><a href="#home" id="home-button">홈</a></li>
                 <li><a href="https://www.google.com" target="_blank" class="google-link">구글</a></li>
             </ul>
