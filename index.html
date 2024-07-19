@@ -84,11 +84,20 @@
         z-index: 1000;
     }
 
+    .header-left, .header-right {
+        flex: 1;
+    }
+
+    .header-center {
+        flex: 2;
+        display: flex;
+        justify-content: center;
+    }
+
     header nav {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100%;
     }
 
     header ul {
@@ -112,6 +121,25 @@
         padding: 5px 10px;
         border-radius: 5px;
         font-size: 0.9em;
+    }
+
+        .naver-link {
+        background-color: var(--naver-color);
+        color: white !important; /* 글씨 색상을 흰색으로 강제 지정 */
+    }
+
+    .google-link {
+        background-color: var(--google-color);
+        color: #4285F4 !important; /* Google 색상 유지 */
+    }
+    
+    #themeSelect {
+        padding: 5px;
+        border-radius: 5px;
+        background-color: var(--accent-color);
+        color: var(--button-text-color);
+        border: none;
+        cursor: pointer;
     }
     
     footer {
@@ -171,26 +199,6 @@
         margin: 0 5px; /* 좌우 마진 추가 */
         padding: 0 10px; /* 좌우 패딩 추가 */
         box-sizing: border-box;
-    }
-    
-    .naver-link {
-        background-color: var(--naver-color);
-        color: white !important; /* 글씨 색상을 흰색으로 강제 지정 */
-    }
-
-    .google-link {
-        background-color: var(--google-color);
-        color: #4285F4 !important; /* Google 색상 유지 */
-    }
-    
-    #themeSelect {
-        margin-left: auto; /* 오른쪽으로 밀기 */
-        padding: 5px;
-        border-radius: 5px;
-        background-color: var(--accent-color);
-        color: var(--button-text-color);
-        border: none;
-        cursor: pointer;
     }
     
     .main-container {
@@ -408,18 +416,23 @@
 <body>
     <canvas id="backgroundCanvas"></canvas>
     <header>
-        <nav>
-            <ul>
-                <li><a href="#" id="naverLink" class="naver-link">네이버</a></li>
-                <li><a href="#home" id="home-button">홈</a></li>
-                <li><a href="https://www.google.com" target="_blank" class="google-link">구글</a></li>
-            </ul>
-        </nav>
-        <select id="themeSelect">
-            <option value="system">시스템 테마</option>
-            <option value="light">라이트 테마</option>
-            <option value="dark">다크 테마</option>
-        </select>
+        <div class="header-left"></div>
+        <div class="header-center">
+            <nav>
+                <ul>
+                    <li><a href="#" id="naverLink" class="naver-link">네이버</a></li>
+                    <li><a href="#home" id="home-button">홈</a></li>
+                    <li><a href="https://www.google.com" target="_blank" class="google-link">구글</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-right">
+            <select id="themeSelect">
+                <option value="system">시스템 테마</option>
+                <option value="light">라이트 테마</option>
+                <option value="dark">다크 테마</option>
+            </select>
+        </div>
     </header>
 
 
