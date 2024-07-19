@@ -79,21 +79,18 @@
         justify-content: space-between;
         align-items: center;
         padding: 0 15px;
-    }
-    
-    header {
         position: sticky;
         top: 0;
         z-index: 1000;
-    }    
-    
+    }
+
     header nav {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
     }
-    
+
     header ul {
         display: flex;
         justify-content: center;
@@ -101,13 +98,12 @@
         list-style-type: none;
         margin: 0;
         padding: 0;
-        flex-grow: 1;
     }
-    
+
     header ul li {
         margin: 0 10px;
     }
-    
+
     header ul li a {
         color: white;
         text-decoration: none;
@@ -188,7 +184,7 @@
     }
     
     #themeSelect {
-        margin-left: 10px;
+        margin-left: auto; /* 오른쪽으로 밀기 */
         padding: 5px;
         border-radius: 5px;
         background-color: var(--accent-color);
@@ -414,16 +410,16 @@
     <header>
         <nav>
             <ul>
-                <li><a href="#" class="naver-link" id="naverLink">네이버</a></li>
+                <li><a href="#" id="naverLink" class="naver-link">네이버</a></li>
                 <li><a href="#home" id="home-button">홈</a></li>
                 <li><a href="https://www.google.com" target="_blank" class="google-link">구글</a></li>
             </ul>
-            <select id="themeSelect">
-                <option value="system">시스템 테마</option>
-                <option value="light">라이트 테마</option>
-                <option value="dark">다크 테마</option>
-            </select>
         </nav>
+        <select id="themeSelect">
+            <option value="system">시스템 테마</option>
+            <option value="light">라이트 테마</option>
+            <option value="dark">다크 테마</option>
+        </select>
     </header>
 
 
