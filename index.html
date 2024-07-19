@@ -345,69 +345,35 @@
         }
     }
     
-    @media (max-width: 1199px) {
+    @media (max-width: 1199px) and (min-width: 481px) {
+        .main-container {
+            flex-direction: row;
+            align-items: flex-start;
+        }
+        .banner-container {
+            flex: 1;
+            height: auto;
+            max-width: none;
+        }
+        main {
+            flex: 2;
+        }
+    }
+    
+    @media (max-width: 480px) {
         .main-container {
             flex-direction: column;
             align-items: center;
         }
         .banner-container {
-            max-width: 100%;
             width: 100%;
-            margin: 10px 0;
+            max-width: 100%;
             height: 150px;
-        }
-        .banner-container iframe {
-            height: calc(100% - 20px);
+            margin: 10px 0;
         }
         main {
+            width: 100%;
             max-width: 100%;
-        }
-    }
-    
-    @media (max-width: 768px) {
-        header ul li{
-            margin: 0 5px;
-        }
-
-        header ul li a, .coupang-button, .baemin-button {
-            font-size: 0.8em;
-            padding: 4px 8px;
-        }
-        .content-container {
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        }
-        .iframe-item {
-            max-width: 150px;
-        }
-        .delivery-item {
-            flex: 1 1 100%;
-        }
-        #threejs-container {
-            height: 100px;
-        }
-        footer {
-            padding: 5px 0; /* 모바일에서도 상하 패딩 유지 */
-        }
-        footer ul li a {
-            font-size: 0.8em;
-            height: 30px; /* 모바일에서 버튼 높이 줄임 */
-        }
-    }
-    
-    @media (max-width: 480px) {
-        header ul li a, .coupang-button, .baemin-button {
-            font-size: 0.7em;
-            padding: 3px 6px;
-        }
-        .banner-container {
-            max-height: 150px;
-            overflow: hidden;
-        }
-        #threejs-container {
-            height: 100px;
-        }
-        .content-container {
-            grid-template-columns: repeat(2, 1fr);
         }
     }
 </style>
@@ -701,19 +667,29 @@
     function adjustBannerHeights() {
         const banners = document.querySelectorAll('.banner-container');
         const mainContent = document.querySelector('main');
-        if (window.innerWidth >= 1200) {
+        const windowWidth = window.innerWidth;
+        
+        if (windowWidth >= 1200) {
             const mainHeight = mainContent.offsetHeight;
             banners.forEach(banner => {
                 banner.style.height = `${mainHeight}px`;
                 banner.style.maxWidth = '300px';
             });
+            mainContent.style.maxWidth = '800px';
+        } else if (windowWidth >= 481 && windowWidth < 1200) {
+            const containerHeight = document.querySelector('.main-container').offsetHeight;
+            banners.forEach(banner => {
+                banner.style.height = `${containerHeight}px`;
+                banner.style.maxWidth = 'none';
+            });
+            mainContent.style.maxWidth = 'none';
         } else {
             banners.forEach(banner => {
                 banner.style.height = '150px';
                 banner.style.maxWidth = '100%';
             });
+            mainContent.style.maxWidth = '100%';
         }
-        mainContent.style.maxWidth = window.innerWidth >= 1200 ? '800px' : '100%';
     }
     
     function handleResize() {
