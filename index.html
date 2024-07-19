@@ -135,11 +135,24 @@
     }
     
     .theme-toggle {
-        background: var(--accent-color);
-        color: var(--button-text-color);
-        border: none;
-        cursor: pointer;
-        margin-left: 20px;
+        display: none;
+    }
+
+    footer nav ul {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    footer nav ul li {
+        flex: 1;
+    }
+
+    footer nav ul li a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
     }
     
     #themeSelect {
@@ -149,6 +162,7 @@
         background-color: var(--accent-color);
         color: var(--button-text-color);
         border: none;
+        cursor: pointer;
     }
     
     .main-container {
@@ -327,7 +341,7 @@
         }
         
         .theme-toggle {
-            margin-left: 10px;
+            display: none;
         }
 
         header ul li a, footer ul li a, .theme-toggle, .coupang-button, .baemin-button {
@@ -370,20 +384,20 @@
 <body>
     <canvas id="backgroundCanvas"></canvas>
     <header>
-    <nav>
-        <ul>
-            <li><a href="https://www.naver.com" target="_blank" class="naver-link" id="naverLink">네이버</a></li>
-            <li><a href="#home" id="home-button">홈</a></li>
-            <li><a href="https://www.google.com" target="_blank" class="google-link">구글</a></li>
-        </ul>
-        <button class="theme-toggle" id="themeToggle">테마 전환</button>
-        <select id="themeSelect">
-            <option value="system">시스템 테마</option>
-            <option value="light">라이트 테마</option>
-            <option value="dark">다크 테마</option>
-        </select>
-    </nav>
-</header>
+        <nav>
+            <ul>
+                <li><a href="https://www.naver.com" target="_blank" class="naver-link" id="naverLink">네이버</a></li>
+                <li><a href="#home" id="home-button">홈</a></li>
+                <li><a href="https://www.google.com" target="_blank" class="google-link">구글</a></li>
+            </ul>
+            <select id="themeSelect">
+                <option value="system">시스템 테마</option>
+                <option value="light">라이트 테마</option>
+                <option value="dark">다크 테마</option>
+            </select>
+        </nav>
+    </header>
+
 
     <div class="main-container">
         <div class="banner-container left-banner">
@@ -589,10 +603,8 @@
     }
     
     function setupEventListeners() {
-        const themeToggle = document.getElementById('themeToggle');
         const themeSelect = document.getElementById('themeSelect');
         
-        themeToggle.addEventListener('click', toggleTheme);
         themeSelect.addEventListener('change', handleThemeChange);
 
         window.addEventListener('resize', handleResize);
@@ -628,6 +640,7 @@
         if (selectedTheme === 'system') {
             document.body.className = 'system-theme';
             localStorage.removeItem('theme');
+            handleSystemThemeChange(window.matchMedia('(prefers-color-scheme: dark)'));
         } else {
             document.body.className = selectedTheme + '-theme';
             localStorage.setItem('theme', document.body.className);
