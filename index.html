@@ -294,27 +294,6 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
     
-    #threejs-container {
-        width: 100%;
-        height: 300px;
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: height 0.3s ease;
-    }
-    
-    .content-item {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    
-    .content-item.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
     a {
         color: var(--accent-color);
         transition: color 0.3s ease;
@@ -383,9 +362,6 @@
         .delivery-item {
             flex: 1 1 100%;
         }
-        #threejs-container {
-            height: 100px;
-        }
         footer ul li a {
             font-size: 0.8em;
             height: 30px;
@@ -402,9 +378,6 @@
         header ul li a, .coupang-button, .baemin-button {
             font-size: 0.7em;
             padding: 3px 6px;
-        }
-        #threejs-container {
-            height: 100px;
         }
         .content-container {
             grid-template-columns: repeat(2, 1fr);
@@ -442,7 +415,6 @@
 
         <main role="main">
             <section id="home" class="section">
-                <div id="threejs-container" class="content-item"></div>
                 <div class="search-widget">
                     <iframe src="https://coupa.ng/cfO0dP" width="100%" height="75" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
                 </div>
@@ -497,7 +469,6 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         setupBackgroundCanvas();
-        setupThreeJS();
         setupEventListeners();
         lazyLoadImages();
         handleResize();
@@ -565,63 +536,6 @@
         resizeCanvas();
         window.addEventListener('mousemove', createParticle);
         animateParticles();
-    }
-    
-    function setupThreeJS() {
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true });
-        
-        const container = document.getElementById('threejs-container');
-        
-        function resizeRenderer() {
-            const width = container.clientWidth;
-            const height = container.clientHeight;
-            renderer.setSize(width, height);
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
-        }
-        
-        resizeRenderer();
-        window.addEventListener('resize', resizeRenderer);
-        container.appendChild(renderer.domElement);
-        
-        // 새로운 파도 효과 생성
-        const geometry = new THREE.PlaneGeometry(20, 20, 100, 100);
-        const material = new THREE.MeshBasicMaterial({
-            color: 0x4a90e2,
-            wireframe: true,
-            transparent: true,
-            opacity: 0.5
-        });
-        const waves = new THREE.Mesh(geometry, material);
-        waves.rotation.x = -Math.PI / 2;
-        scene.add(waves);
-        
-        camera.position.z = 10;
-        camera.position.y = 5;
-        camera.lookAt(scene.position);
-        
-        function animate() {
-            requestAnimationFrame(animate);
-            
-            const time = Date.now() * 0.001;
-            const positions = waves.geometry.attributes.position;
-            
-            for (let i = 0; i < positions.count; i++) {
-                const x = positions.getX(i);
-                const y = positions.getY(i);
-                const amp = 0.5; // 파도의 높이
-                const freq = 0.5; // 파도의 빈도
-                const z = amp * Math.sin(x * freq + time) * Math.cos(y * freq + time);
-                positions.setZ(i, z);
-            }
-            positions.needsUpdate = true;
-            
-            renderer.render(scene, camera);
-        }
-        
-        animate();
     }
     
     function setupEventListeners() {
